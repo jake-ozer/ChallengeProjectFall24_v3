@@ -48,6 +48,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        
+
         //movement logic happens here
         DirectionalMovement();
         if (!FindObjectOfType<PlayerWallRide>().wallRiding)
@@ -69,6 +71,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void VerticalMovement()
     {
+
         //gravity and falling logic
         if (isGrounded && velocity.y < 0)
         {
