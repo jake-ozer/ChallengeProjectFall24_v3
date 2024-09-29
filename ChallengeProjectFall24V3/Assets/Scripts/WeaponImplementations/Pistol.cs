@@ -6,6 +6,7 @@ using UnityEngine;
 public class Pistol : MonoBehaviour, IWeapon
 {
     [SerializeField] private LayerMask enemyLayer;
+    [SerializeField] private int damage;
     private Animator gunAnim;
     public Transform camTransform;
 
@@ -23,6 +24,7 @@ public class Pistol : MonoBehaviour, IWeapon
         if (Physics.Raycast(camTransform.position, camTransform.forward, out hit, Mathf.Infinity, enemyLayer))
         {
             Debug.Log("You hit "+hit.collider.gameObject.name);
+            hit.collider.gameObject.GetComponent<Enemy>().TakeDamage(damage);
         }
     }
 

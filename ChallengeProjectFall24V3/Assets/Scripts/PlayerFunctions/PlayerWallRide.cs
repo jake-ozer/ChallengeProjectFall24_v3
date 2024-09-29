@@ -41,16 +41,13 @@ public class PlayerWallRide : MonoBehaviour
         if(onWall && input.Ground.Wallride.ReadValue<float>() > 0) {
             wallRiding = true;
         }
-        else
-        {
-            wallRiding = false;
-        }
 
         //release jump button
-        if(onWall && input.Ground.Wallride.ReadValue<float>() <= 0 && wallJumpCooldown <= 0)
+        if(onWall && input.Ground.Wallride.ReadValue<float>() <= 0 && wallJumpCooldown <= 0 && wallRiding)
         {
             playerMovement.Jump();
             wallJumpCooldown = cooldownStart;
+            wallRiding = false;
         }
     }
 
@@ -69,6 +66,7 @@ public class PlayerWallRide : MonoBehaviour
         {
             onWall = false;
             playerMovement.speed -= speedModifier;
+            wallRiding = false;
         }
     }
 }

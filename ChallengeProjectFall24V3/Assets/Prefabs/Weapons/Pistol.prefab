@@ -153,4 +153,5 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 0
+  damage: 10
   camTransform: {fileID: 0}
