@@ -44,6 +44,16 @@ public class PlayerSlide : MonoBehaviour
         {
             Debug.Log("You pressed slide");
             StartCoroutine("Slide");
+        }
+
+        if(sliding && input.Ground.Jump.triggered)
+        {
+                StopCoroutine("Slide");
+                playerMovement.enabled = true;       
+                Debug.Log("Movement restored");
+                playerVision.transform.position = new Vector3(playerVision.transform.position.x, initCamPos.y, playerVision.transform.position.z);
+                playerMovement.Jump();
+                sliding = false;
 
         }
 
@@ -51,7 +61,8 @@ public class PlayerSlide : MonoBehaviour
         if(sliding)
         {
             playerVision.transform.Translate(new Vector3(0, -cameraMoveSpeed, 0));
-            controller.Move(movement * (playerMovement.speed * 1.1f) * Time.deltaTime * slideSpeed);
+            Debug.Log(playerVision.transform.position.z);
+            controller.Move(movement * (playerMovement.speed * slideSpeed) * Time.deltaTime);
         }
     }
     private IEnumerator Slide()
@@ -65,7 +76,6 @@ public class PlayerSlide : MonoBehaviour
         //Get player's velocty in x and z direction (left and right).
         float xDir = playerMovement.getDirectionalVelo().x;
         float zDir = playerMovement.getDirectionalVelo().y;
-
         //Maintain player's velocity in direction with "slide" movement boost
         movement = transform.right * xDir + transform.forward * zDir;
 
