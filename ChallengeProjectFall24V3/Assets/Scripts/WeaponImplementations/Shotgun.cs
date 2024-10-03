@@ -12,7 +12,7 @@ public class Shotgun : MonoBehaviour, IWeapon
     public Transform camTransform;
     public ShotgunPellet pelletPrefab;
 
-    private Vector3 _muzzleOffset = new Vector3(0, 1.0f, 0);
+    [SerializeField] private Vector3 _muzzleOffset = new Vector3(0, 1.0f, 0);
     [SerializeField] private uint _numPellets = 5;
     [SerializeField] private float _pelletSpeed = 50f;
     [SerializeField] private float _spreadAngle = 15f;
@@ -30,16 +30,16 @@ public class Shotgun : MonoBehaviour, IWeapon
     {
         gunAnim.SetTrigger("Shoot");
 
-        Vector3 pos = transform.position + _muzzleOffset;
         Vector3 offset = new Vector3(0, 0, 0);
 
+        Vector3 muzzlePosition = transform.TransformPoint(_muzzleOffset);
         for (uint i = 0; i < _numPelletsSqrt; i++)
         {
             for (uint j = 0; j < _numPelletsSqrt; j++)
             {
                 offset.x = i * 0.1f;
                 offset.y = j * 0.1f;
-                ShotgunPellet pellet = Instantiate(pelletPrefab, pos + offset, Quaternion.identity);
+                ShotgunPellet pellet = Instantiate(pelletPrefab, muzzlePosition + offset, Quaternion.identity);
             
                 Vector3 spreadDirection = Random.insideUnitSphere * Mathf.Tan(_spreadAngle * Mathf.Deg2Rad);
                 Vector3 shootDirection = camTransform.forward + spreadDirection;
