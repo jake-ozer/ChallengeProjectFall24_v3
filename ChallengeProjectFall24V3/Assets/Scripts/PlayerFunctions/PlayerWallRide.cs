@@ -9,13 +9,16 @@ public class PlayerWallRide : MonoBehaviour
     [SerializeField] private CharacterController controller;
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private float speedModifier;
+    [SerializeField] private float wallJumpCooldown;
     public bool wallRiding;
     private MainInput input;
     private bool onWall;
+    private float cooldownStart;
 
     void Awake()
     {
         input = new MainInput();
+        cooldownStart = wallJumpCooldown;
     }
 
     // --------- enable/disbale input when script toggled on/off -------------- 
@@ -32,20 +35,19 @@ public class PlayerWallRide : MonoBehaviour
 
     private void Update()
     {
-        //control wall ride
+        wallJumpCooldown -= Time.deltaTime;
+
+        //holding jump button
         if(onWall && input.Ground.Wallride.ReadValue<float>() > 0) {
             wallRiding = true;
-            OnWall();
-        }
-        else
-        {
-            wallRiding = false;
         }
 
-        if(onWall && input.Ground.Wallride.ReadValue<float>() <= 0)
+        //release jump button
+        if(onWall && input.Ground.Wallride.ReadValue<float>() <= 0 && wallJumpCooldown <= 0 && wallRiding)
         {
-            OffWall();
-            onWall = false;
+            playerMovement.Jump();
+            wallJumpCooldown = cooldownStart;
+            wallRiding = false;
         }
     }
 
@@ -64,19 +66,7 @@ public class PlayerWallRide : MonoBehaviour
         {
             onWall = false;
             playerMovement.speed -= speedModifier;
+            wallRiding = false;
         }
-    }
-
-    private void OnWall()
-    {
-        Debug.Log("on wall");
-        
-    }
-
-    private void OffWall()
-    {
-        Debug.Log("off wall");
-        playerMovement.Jump();
-        
     }
 }

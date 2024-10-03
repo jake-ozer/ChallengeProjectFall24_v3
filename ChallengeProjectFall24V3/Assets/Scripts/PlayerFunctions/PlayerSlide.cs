@@ -14,6 +14,7 @@ public class PlayerSlide : MonoBehaviour
     private float prevSpeed;
     private MainInput input;
     private bool sliding = false;
+    private bool dirSlide;
     private Vector3 initCamPos;
     private Vector3 movement;
 
@@ -44,14 +45,32 @@ public class PlayerSlide : MonoBehaviour
         {
             Debug.Log("You pressed slide");
             StartCoroutine("Slide");
+        }
+
+        if(sliding && input.Ground.Jump.triggered)
+        {
+                StopCoroutine("Slide");
+                playerMovement.enabled = true;       
+                Debug.Log("Movement restored");
+                playerVision.transform.position = new Vector3(playerVision.transform.position.x, initCamPos.y, playerVision.transform.position.z);
+                playerMovement.Jump();
+                sliding = false;
+            dirSlide = false;
 
         }
 
 
         if(sliding)
         {
-            playerVision.transform.Translate(new Vector3(0, -cameraMoveSpeed, 0));
-            controller.Move(movement * (playerMovement.speed * 1.1f) * Time.deltaTime * slideSpeed);
+            playerVision.transform.Translate(new Vector3(0, -cameraMoveSpeed, 0), Space.World);
+            if(dirSlide)
+            {
+                controller.Move(movement * (playerMovement.speed * slideSpeed) * Time.deltaTime);
+            } else
+            {
+                controller.Move(movement * (playerMovement.speed * slideSpeed) * Time.deltaTime);
+            }
+            
         }
     }
     private IEnumerator Slide()
@@ -65,9 +84,18 @@ public class PlayerSlide : MonoBehaviour
         //Get player's velocty in x and z direction (left and right).
         float xDir = playerMovement.getDirectionalVelo().x;
         float zDir = playerMovement.getDirectionalVelo().y;
-
+        Debug.Log(xDir + zDir);
         //Maintain player's velocity in direction with "slide" movement boost
-        movement = transform.right * xDir + transform.forward * zDir;
+        if(xDir == 0 && zDir == 0)
+        {
+            dirSlide = false;
+            movement = transform.forward * 1;
+        } else
+        {
+            movement = transform.right * xDir + transform.forward * zDir;
+            dirSlide = true;
+        }
+        
 
         yield return new WaitForSeconds(slideTime);
 
@@ -75,6 +103,8 @@ public class PlayerSlide : MonoBehaviour
         Debug.Log("Movement restored");
         sliding = false;
         playerVision.transform.position = new Vector3(playerVision.transform.position.x, initCamPos.y, playerVision.transform.position.z);
+
         playerMovement.Jump();
+        dirSlide = false;
     }
 }
