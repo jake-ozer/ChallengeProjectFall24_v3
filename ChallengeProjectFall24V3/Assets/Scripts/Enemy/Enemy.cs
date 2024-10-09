@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private int health;
     [SerializeField] private HealthBar healthBar;
+    [SerializeField] private int damageDealt;
 
 
     private void Awake()
@@ -32,6 +33,11 @@ public class Enemy : MonoBehaviour
     {
         Destroy(gameObject);
 
+    }
+
+    public int getDamageDealt()
+    {
+        return damageDealt;
     }
 
     // Start is called before the first frame update
