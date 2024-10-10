@@ -11,7 +11,6 @@ public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private Collider enemySpawnWall;
     [SerializeField] private GameObject enemyPrefab;
-    [SerializeField] private Transform enemySpawnPt;
     private bool trigger = false;
     private bool spawnObj = false;
 
