@@ -47,6 +47,9 @@ public class PlayerSlide : MonoBehaviour
             StartCoroutine("Slide");
         }
 
+
+       
+
         if(sliding && input.Ground.Jump.triggered)
         {
                 StopCoroutine("Slide");
@@ -55,7 +58,7 @@ public class PlayerSlide : MonoBehaviour
                 playerVision.transform.position = new Vector3(playerVision.transform.position.x, initCamPos.y, playerVision.transform.position.z);
                 playerMovement.Jump();
                 sliding = false;
-            dirSlide = false;
+                dirSlide = false;
 
         }
 
@@ -84,7 +87,7 @@ public class PlayerSlide : MonoBehaviour
         //Get player's velocty in x and z direction (left and right).
         float xDir = playerMovement.getDirectionalVelo().x;
         float zDir = playerMovement.getDirectionalVelo().y;
-        Debug.Log(xDir + zDir);
+        
         //Maintain player's velocity in direction with "slide" movement boost
         if(xDir == 0 && zDir == 0)
         {
@@ -105,6 +108,9 @@ public class PlayerSlide : MonoBehaviour
         playerVision.transform.position = new Vector3(playerVision.transform.position.x, initCamPos.y, playerVision.transform.position.z);
 
         playerMovement.Jump();
-        dirSlide = false;
+        if(dirSlide = true)
+        {
+            dirSlide = false;
+        }
     }
 }
