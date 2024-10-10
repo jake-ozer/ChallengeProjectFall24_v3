@@ -59,6 +59,17 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+
+    public void updateSpeed(float speed)
+    {
+        this.speed += speed;
+    }
+
+    public float getSpeed()
+    {
+        return this.speed;
+    }
+
     private void DirectionalMovement()
     {
         move = input.Ground.Move.ReadValue<Vector2>();

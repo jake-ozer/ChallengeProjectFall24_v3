@@ -9,8 +9,6 @@ using UnityEngine.Windows;
 
 public class EnemySpawner : MonoBehaviour
 {
-
-    private MainInput input;
     [SerializeField] private Collider enemySpawnWall;
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private Transform enemySpawnPt;
