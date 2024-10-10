@@ -867,6 +867,10 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: 0.006706327
       objectReference: {fileID: 0}
+    - target: {fileID: 2900115143877483836, guid: 4769907e97cfca44a8b47f1aa96a92bd, type: 3}
+      propertyPath: damageCooldown
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3390738619451930708, guid: 4769907e97cfca44a8b47f1aa96a92bd, type: 3}
       propertyPath: m_Name
       value: DamagePlayerOnTouch
