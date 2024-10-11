@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour
     {
         healthBar.SetMaxHealth(health);
         spdState = FindObjectOfType<SpeedState>();
+        FindObjectOfType<RankManager>().enemyCount(1); 
         
     }
 
