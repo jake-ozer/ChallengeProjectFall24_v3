@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private int health;
     [SerializeField] private HealthBar healthBar;
-    private SpeedState spdState;
+    [SerializeField] private int damageDealt;
 
 
     private void Awake()
@@ -37,6 +37,11 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject);
         spdState.UpdateSpeedState(true);
 
+    }
+
+    public int getDamageDealt()
+    {
+        return damageDealt;
     }
 
     // Start is called before the first frame update
