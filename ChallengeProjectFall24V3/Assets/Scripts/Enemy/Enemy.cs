@@ -7,13 +7,13 @@ public class Enemy : MonoBehaviour
     [SerializeField] private int health;
     [SerializeField] private HealthBar healthBar;
     [SerializeField] private int damageDealt;
+    private SpeedState spdState;
 
 
     private void Awake()
     {
         healthBar.SetMaxHealth(health);
         spdState = FindObjectOfType<SpeedState>();
-        FindObjectOfType<RankManager>().enemyCount(1); 
         
     }
 

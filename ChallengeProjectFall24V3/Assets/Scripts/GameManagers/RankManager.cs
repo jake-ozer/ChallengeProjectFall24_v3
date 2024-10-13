@@ -18,9 +18,9 @@ public class RankManager : MonoBehaviour
 
     void Start()
     {
-        //CalculateMedalTime(bronzeTimeSeconds);
+        Enemy[] preplacedEnemyList = FindObjectsOfType<Enemy>();
         startEnemies += FindObjectOfType<EnemySpawner>().GetEnemySpawnWall().transform.childCount; //Gets all spawn point enemies (enemies that haven't spawned yet)
-        this.SetTotalEnemies(startEnemies);
+        this.SetTotalEnemies(preplacedEnemyList.Length + startEnemies); //adds preplaced and enemies yet to be spawned.
 
     }
 
@@ -45,13 +45,6 @@ public class RankManager : MonoBehaviour
     {
         this.totalEnemies = num;
     }
-    private void CalculateMedalTime(float bronzeTime)
-    {
-        //Example times, Bronze is 2:00 (120 seconds), then silver is (1:45), gold is (1:40), plat is (1:30)
-        //Silver is 7/8th of bronze, then gold is 7/8 - 1/24, then plat is 3/4 of bronze.
-
-    }
-
     public void enemyCount(int i)
     {
         startEnemies++;
