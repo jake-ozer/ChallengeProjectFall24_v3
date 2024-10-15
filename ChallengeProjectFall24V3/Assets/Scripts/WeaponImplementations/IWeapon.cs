@@ -5,4 +5,6 @@ using UnityEngine;
 public interface IWeapon
 {
     public void Shoot();
+    public void ResetAnimState();
+    public void ReEnableGFX();
 }

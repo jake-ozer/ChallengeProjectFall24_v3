@@ -18,18 +18,20 @@ public class EnemySpawner : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(!trigger)
+        if (other.gameObject.tag == "Player")
         {
-            int spawners = enemySpawnWall.transform.childCount;
-            Debug.Log("Collision Triggered!");
-            for (int i = 0; i < spawners; i++)
+            if (!trigger)
             {
-                Instantiate(enemyPrefab, transform.GetChild(i));
+                int spawners = enemySpawnWall.transform.childCount;
+                Debug.Log("Collision Triggered!");
+                for (int i = 0; i < spawners; i++)
+                {
+                    Instantiate(enemyPrefab, transform.GetChild(i));
+                }
+
+                trigger = true; //Make it so it only triggers once.
             }
-            
-            trigger = true; //Make it so it only triggers once.
         }
-        
     }
 
 
