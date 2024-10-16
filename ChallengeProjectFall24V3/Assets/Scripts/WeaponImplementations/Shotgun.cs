@@ -39,7 +39,7 @@ public class Shotgun : MonoBehaviour, IWeapon
         gunSource.PlayOneShot(shootSFX);
         // gunAnim.Play("Shoot");
         
-        gunAnim.SetTrigger("Shoot");
+        //gunAnim.SetTrigger("Shoot");
 
         Vector3 offset = new Vector3(0, 0, 0);
 

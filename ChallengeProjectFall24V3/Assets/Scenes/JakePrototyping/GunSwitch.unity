@@ -354,7 +354,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 961e7dc429fc5854db79c3305378713c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curWeapon: {fileID: 826027845}
+  curWeapon: {fileID: 6314138415651297326}
   pistolObj: {fileID: 6314138415651297326}
   shotgunObj: {fileID: 826027845}
 --- !u!4 &216456692
@@ -1451,7 +1451,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6509911235224700586, guid: 0ce319c94dc5f6c4f9ceb65619664415, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2956,7 +2956,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6509911235224700586, guid: 77bc5949c16b52348bc762f38632ce66, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
