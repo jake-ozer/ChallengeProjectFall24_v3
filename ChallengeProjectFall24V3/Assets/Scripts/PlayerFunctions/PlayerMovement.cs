@@ -48,15 +48,21 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        
-
         //movement logic happens here
         DirectionalMovement();
-        if (!FindObjectOfType<PlayerWallRide>().wallRiding)
-        {
-            VerticalMovement();
-            GroundCheck();
-        }
+        VerticalMovement();
+        GroundCheck();
+    }
+
+
+    public void updateSpeed(float speed)
+    {
+        this.speed += speed;
+    }
+
+    public float getSpeed()
+    {
+        return this.speed;
     }
 
     private void DirectionalMovement()

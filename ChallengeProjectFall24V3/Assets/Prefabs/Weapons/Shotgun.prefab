@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7311080961819075874}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bone_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,8 +41,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4883117510871510595}
   - component: {fileID: 1270281847663235381}
-  m_Layer: 0
-  m_Name: Cube.001
+  m_Layer: 7
+  m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57,7 +57,7 @@ Transform:
   m_GameObject: {fileID: 268422324455438334}
   serializedVersion: 2
   m_LocalRotation: {x: -0.70468664, y: 5.7675793e-18, z: -5.985782e-18, w: 0.7095187}
-  m_LocalPosition: {x: -0, y: -0.47, z: -0.5}
+  m_LocalPosition: {x: 0, y: -0.445, z: -3.697}
   m_LocalScale: {x: 1.3463471, y: 0.59809387, z: 1.0278062}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -126,7 +126,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 24135413789786267}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Armature
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -158,7 +158,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2319861531482235895}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -190,8 +190,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 531415116649035809}
-  - component: {fileID: 5538887698337303524}
   - component: {fileID: 2843455858480871086}
+  - component: {fileID: 4685772244886755101}
+  - component: {fileID: 8701087714199142920}
   m_Layer: 7
   m_Name: Shotgun
   m_TagString: Untagged
@@ -207,7 +208,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6509911235224700586}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.005094299, y: -0.9948754, z: 0.07519457, w: -0.067401074}
+  m_LocalRotation: {x: -0.005094827, y: -0.9948749, z: 0.07519788, w: -0.06740503}
   m_LocalPosition: {x: 1.03, y: -0.91, z: 1.62}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -215,27 +216,6 @@ Transform:
   - {fileID: 8999716344141795333}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 8.645, y: -187.752, z: 0}
---- !u!95 &5538887698337303524
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6509911235224700586}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 76989161e046bf845b59c9265a762917, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &2843455858480871086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,15 +231,133 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 0
-  gunAnim: {fileID: 0}
+  gunAnim: {fileID: 4685772244886755101}
   fireRate: 0
-  shootSFX: {fileID: 0}
+  shootSFX: {fileID: 8300000, guid: fc1c9611426ee574a88bcb6f0428e5bb, type: 3}
   camTransform: {fileID: 0}
   pelletPrefab: {fileID: 1019213095569276344, guid: e991755747813204e91a2739d1e6128f, type: 3}
-  _muzzleOffset: {x: 0, y: 1, z: 0}
-  _numPellets: 5
+  _muzzleOffset: {x: 0.5, y: 0.5, z: -2.5}
+  _numPellets: 16
   _pelletSpeed: 50
   _spreadAngle: 15
+  gunGFX: {fileID: 8624035917241846463}
+--- !u!95 &4685772244886755101
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6509911235224700586}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a4295cb645f92274b8306d28588537d4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!82 &8701087714199142920
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6509911235224700586}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &8134539572008060298
 GameObject:
   m_ObjectHideFlags: 0
@@ -270,8 +368,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5230030222692469600}
   - component: {fileID: 1134813266833846896}
-  m_Layer: 0
-  m_Name: Cube
+  m_Layer: 7
+  m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -355,7 +453,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8999716344141795333}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: shotgunRetro
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -371,8 +469,8 @@ Transform:
   m_GameObject: {fileID: 8624035917241846463}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.4, y: 0.5, z: -0.3}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 24135413789786267}

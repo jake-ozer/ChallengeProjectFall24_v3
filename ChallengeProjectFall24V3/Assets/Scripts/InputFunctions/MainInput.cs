@@ -80,6 +80,15 @@ public partial class @MainInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""SwitchWeapon"",
+                    ""type"": ""Button"",
+                    ""id"": ""e2d3e77d-318a-484e-b356-301e9c29cf86"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -357,6 +366,28 @@ public partial class @MainInput: IInputActionCollection2, IDisposable
                     ""action"": ""Wallride"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c7eb0b68-0771-46ce-a031-acb7c55c8b45"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchWeapon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ded5db17-cf97-4000-8ed5-cf3f4d1a3224"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchWeapon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -371,6 +402,7 @@ public partial class @MainInput: IInputActionCollection2, IDisposable
         m_Ground_Jump = m_Ground.FindAction("Jump", throwIfNotFound: true);
         m_Ground_Slide = m_Ground.FindAction("Slide", throwIfNotFound: true);
         m_Ground_Wallride = m_Ground.FindAction("Wallride", throwIfNotFound: true);
+        m_Ground_SwitchWeapon = m_Ground.FindAction("SwitchWeapon", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -438,6 +470,7 @@ public partial class @MainInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Ground_Jump;
     private readonly InputAction m_Ground_Slide;
     private readonly InputAction m_Ground_Wallride;
+    private readonly InputAction m_Ground_SwitchWeapon;
     public struct GroundActions
     {
         private @MainInput m_Wrapper;
@@ -448,6 +481,7 @@ public partial class @MainInput: IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_Ground_Jump;
         public InputAction @Slide => m_Wrapper.m_Ground_Slide;
         public InputAction @Wallride => m_Wrapper.m_Ground_Wallride;
+        public InputAction @SwitchWeapon => m_Wrapper.m_Ground_SwitchWeapon;
         public InputActionMap Get() { return m_Wrapper.m_Ground; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -475,6 +509,9 @@ public partial class @MainInput: IInputActionCollection2, IDisposable
             @Wallride.started += instance.OnWallride;
             @Wallride.performed += instance.OnWallride;
             @Wallride.canceled += instance.OnWallride;
+            @SwitchWeapon.started += instance.OnSwitchWeapon;
+            @SwitchWeapon.performed += instance.OnSwitchWeapon;
+            @SwitchWeapon.canceled += instance.OnSwitchWeapon;
         }
 
         private void UnregisterCallbacks(IGroundActions instance)
@@ -497,6 +534,9 @@ public partial class @MainInput: IInputActionCollection2, IDisposable
             @Wallride.started -= instance.OnWallride;
             @Wallride.performed -= instance.OnWallride;
             @Wallride.canceled -= instance.OnWallride;
+            @SwitchWeapon.started -= instance.OnSwitchWeapon;
+            @SwitchWeapon.performed -= instance.OnSwitchWeapon;
+            @SwitchWeapon.canceled -= instance.OnSwitchWeapon;
         }
 
         public void RemoveCallbacks(IGroundActions instance)
@@ -522,5 +562,6 @@ public partial class @MainInput: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnSlide(InputAction.CallbackContext context);
         void OnWallride(InputAction.CallbackContext context);
+        void OnSwitchWeapon(InputAction.CallbackContext context);
     }
 }

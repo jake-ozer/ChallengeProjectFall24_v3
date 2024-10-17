@@ -15,6 +15,7 @@ public class Shotgun : MonoBehaviour, IWeapon
     [SerializeField] private uint _numPellets = 5;
     [SerializeField] private float _pelletSpeed = 50f;
     [SerializeField] private float _spreadAngle = 15f;
+    [SerializeField] private GameObject gunGFX;
     
 
     private uint numPelletsSqrt;
@@ -25,6 +26,7 @@ public class Shotgun : MonoBehaviour, IWeapon
         gunAnim = GetComponent<Animator>();
         camTransform = Camera.main.transform;
         numPelletsSqrt = (uint)Mathf.Sqrt(_numPellets);
+        gunSource = transform.parent.GetComponent<AudioSource>();
     }
 
     public void Shoot()
@@ -34,10 +36,10 @@ public class Shotgun : MonoBehaviour, IWeapon
         
         gunAnim.Play("ShotgunShoot");
 
-        // gunSource.PlayOneShot(shootSFX);
+        gunSource.PlayOneShot(shootSFX);
         // gunAnim.Play("Shoot");
         
-        gunAnim.SetTrigger("Shoot");
+        //gunAnim.SetTrigger("Shoot");
 
         Vector3 offset = new Vector3(0, 0, 0);
 
@@ -64,5 +66,21 @@ public class Shotgun : MonoBehaviour, IWeapon
     private void Update()
     {
         shootTimer -= Time.deltaTime;
+    }
+
+    public void ResetShootTimer()
+    {
+        shootTimer = 0;
+    }
+
+    public void ResetAnimState()
+    {
+        gunGFX.SetActive(false);
+        gunAnim.SetTrigger("Reset");
+    }
+
+    public void ReEnableGFX()
+    {
+        gunGFX.SetActive(true);
     }
 }
