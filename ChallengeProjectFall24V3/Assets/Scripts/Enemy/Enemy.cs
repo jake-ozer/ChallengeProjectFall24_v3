@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         healthBar.SetMaxHealth(health);
-        spdState = FindObjectOfType<SpeedState>();
+        //spdState = FindObjectOfType<SpeedState>();
         
     }
 
@@ -35,7 +35,7 @@ public class Enemy : MonoBehaviour
     private void Die()
     {
         Destroy(gameObject);
-        spdState.UpdateSpeedState(true);
+        //spdState.UpdateSpeedState(true);
 
     }
 

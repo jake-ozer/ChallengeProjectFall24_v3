@@ -632,7 +632,7 @@ GameObject:
   - component: {fileID: -7604138654785829337}
   m_Layer: 6
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -867,9 +867,17 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: 0.006706327
       objectReference: {fileID: 0}
+    - target: {fileID: 2900115143877483836, guid: 4769907e97cfca44a8b47f1aa96a92bd, type: 3}
+      propertyPath: damageCooldown
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3390738619451930708, guid: 4769907e97cfca44a8b47f1aa96a92bd, type: 3}
       propertyPath: m_Name
       value: DamagePlayerOnTouch
+      objectReference: {fileID: 0}
+    - target: {fileID: 3390738619451930708, guid: 4769907e97cfca44a8b47f1aa96a92bd, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 9214614952005191723, guid: 4769907e97cfca44a8b47f1aa96a92bd, type: 3}
       propertyPath: m_LocalPosition.x

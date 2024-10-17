@@ -1,18 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class ChaseEnemyPathfinding : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Transform target;
+    private NavMeshAgent agent;
+
+    private void Awake()
     {
-        
+        agent = GetComponent<NavMeshAgent>();
+        target = FindObjectOfType<PlayerMovement>().gameObject.transform;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        if (target != null) { 
+            agent.SetDestination(target.position);
+        }
     }
 }
