@@ -6,11 +6,15 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private int health;
     [SerializeField] private HealthBar healthBar;
+    [SerializeField] private int damageDealt;
+    private SpeedState spdState;
 
 
     private void Awake()
     {
         healthBar.SetMaxHealth(health);
+        //spdState = FindObjectOfType<SpeedState>();
+        
     }
 
     /// <summary>
@@ -31,7 +35,13 @@ public class Enemy : MonoBehaviour
     private void Die()
     {
         Destroy(gameObject);
+        //spdState.UpdateSpeedState(true);
 
+    }
+
+    public int getDamageDealt()
+    {
+        return damageDealt;
     }
 
     // Start is called before the first frame update
