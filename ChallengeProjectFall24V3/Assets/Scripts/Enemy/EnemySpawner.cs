@@ -13,25 +13,38 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private GameObject enemyPrefab;
     private bool trigger = false;
     private bool spawnObj = false;
-
-   
+    private int spawners;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
-            if (!trigger)
-            {
-                int spawners = enemySpawnWall.transform.childCount;
+            if (!trigger) {
+                spawners = enemySpawnWall.transform.childCount;
                 Debug.Log("Collision Triggered!");
                 for (int i = 0; i < spawners; i++)
                 {
-                    Instantiate(enemyPrefab, transform.GetChild(i));
-                }
+                    int spawners = enemySpawnWall.transform.childCount;
+                    Debug.Log("Collision Triggered!");
+                    for (int i = 0; i < spawners; i++)
+                    {
+                        Instantiate(enemyPrefab, transform.GetChild(i));
+                    }
 
-                trigger = true; //Make it so it only triggers once.
+                    trigger = true; //Make it so it only triggers once.
+                }
             }
         }
+    }
+
+    public int getSpawners()
+    {
+        return this.spawners;
+    }
+
+    public Collider GetEnemySpawnWall()
+    {
+        return this.enemySpawnWall;
     }
 
 
