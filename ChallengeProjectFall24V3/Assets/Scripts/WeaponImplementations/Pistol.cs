@@ -20,7 +20,7 @@ public class Pistol : MonoBehaviour, IWeapon
     private void Start()
     {
         camTransform = Camera.main.transform;
-        gunSource = GetComponent<AudioSource>();
+        gunSource = transform.parent.GetComponent<AudioSource>();
     }
 
     public void Shoot()
@@ -52,5 +52,19 @@ public class Pistol : MonoBehaviour, IWeapon
 
         //shooting visualizer
         Debug.DrawRay(camTransform.position, camTransform.forward * 10000f, Color.red);
+    }
+
+    public void ResetAnimState()
+    {
+        leftPistolAnim.gameObject.GetComponent<MeshRenderer>().enabled = false;
+        rightPistolAnim.gameObject.GetComponent<MeshRenderer>().enabled = false;
+        leftPistolAnim.SetTrigger("Reset");
+        rightPistolAnim.SetTrigger("Reset");
+    }
+
+    public void ReEnableGFX()
+    {
+        leftPistolAnim.gameObject.GetComponent<MeshRenderer>().enabled = true;
+        rightPistolAnim.gameObject.GetComponent<MeshRenderer>().enabled = true;
     }
 }
