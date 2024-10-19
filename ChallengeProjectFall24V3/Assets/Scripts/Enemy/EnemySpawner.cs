@@ -20,19 +20,16 @@ public class EnemySpawner : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             if (!trigger) {
+                
                 spawners = enemySpawnWall.transform.childCount;
                 Debug.Log("Collision Triggered!");
                 for (int i = 0; i < spawners; i++)
                 {
-                    int spawners = enemySpawnWall.transform.childCount;
-                    Debug.Log("Collision Triggered!");
-                    for (int i = 0; i < spawners; i++)
-                    {
-                        Instantiate(enemyPrefab, transform.GetChild(i));
-                    }
-
-                    trigger = true; //Make it so it only triggers once.
+                    Instantiate(enemyPrefab, transform.GetChild(i));
                 }
+
+                trigger = true; //Make it so it only triggers once.
+                
             }
         }
     }
