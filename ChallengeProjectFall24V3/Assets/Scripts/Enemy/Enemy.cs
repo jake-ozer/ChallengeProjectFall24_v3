@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, ITakeHit
 {
     [SerializeField] private int health;
     [SerializeField] private HealthBar healthBar;
@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour
     /// Enemy loses health equal to pos number
     /// </summary>
     /// <param name="dmg">positive number</param>
-    public void TakeDamage(int dmg)
+    public void Hit(int dmg)
     {
         health -= dmg;
         healthBar.SetHealth(health);

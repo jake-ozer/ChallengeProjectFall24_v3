@@ -8,6 +8,8 @@ public class PlayerOOB : MonoBehaviour
     private GameObject lastGround;
     [SerializeField]
     private float bufferCheckDistance;
+    [SerializeField]
+    private float oobFailsafeHeight;
 
     private bool oob;
 
@@ -24,7 +26,7 @@ public class PlayerOOB : MonoBehaviour
         GroundCheck();
     }
 
-    private void GroundCheck() //Checks and saves the last ground object the player was standing on
+    private void GroundCheck() //Checks and saves the last ground object the player was standing on, and detects if player is out of bounds
     {
         RaycastHit hit;
         if (Physics.Raycast(transform.position, -transform.up, out hit, bufferCheckDistance))
@@ -34,7 +36,7 @@ public class PlayerOOB : MonoBehaviour
             {
                 lastGround = hit.transform.gameObject;
             }
-            else if (hit.transform.gameObject.layer == 11 && !oob)
+            else if ((hit.transform.gameObject.layer == 11 || transform.position.y < oobFailsafeHeight) && !oob)
             {
                 StartCoroutine(Lakitu());
                 bool oob = true;
@@ -42,16 +44,6 @@ public class PlayerOOB : MonoBehaviour
         }
         
     }
-
-    /*private void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log("Collision");
-        if (collision.transform.gameObject.layer == 11 && !oob)
-        {
-            StartCoroutine(Lakitu());
-            bool oob = true;
-        }
-    } */
 
     private IEnumerator Lakitu() //Placeholder method that returns player to last ground
     {
