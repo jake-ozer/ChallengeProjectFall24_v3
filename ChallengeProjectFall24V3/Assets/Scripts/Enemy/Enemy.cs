@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour, ITakeHit
     [SerializeField] private int health;
     [SerializeField] private HealthBar healthBar;
     [SerializeField] private int damageDealt;
+    [SerializeField] private GameObject explosionEffect;
     private SpeedState spdState;
 
 
@@ -34,6 +35,7 @@ public class Enemy : MonoBehaviour, ITakeHit
 
     private void Die()
     {
+        Instantiate(explosionEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);
         spdState.UpdateSpeedState(true);
 

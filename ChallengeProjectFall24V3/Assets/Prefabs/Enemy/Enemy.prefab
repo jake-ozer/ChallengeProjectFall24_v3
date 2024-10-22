@@ -742,6 +742,7 @@ MonoBehaviour:
   health: 50
   healthBar: {fileID: 4178510396594036636}
   damageDealt: 10
+  explosionEffect: {fileID: 7412293463838433641, guid: 4202f22eb1d0a7146a6011f9742d5441, type: 3}
 --- !u!54 &-7604138654785829337
 Rigidbody:
   m_ObjectHideFlags: 0
