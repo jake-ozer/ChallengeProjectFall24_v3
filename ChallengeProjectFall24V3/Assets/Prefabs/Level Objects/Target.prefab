@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1294796973231618114
+--- !u!1 &6015260818798401199
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,49 +8,48 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4321211239491374511}
-  - component: {fileID: 7973758862552003078}
-  - component: {fileID: 4488876481565668732}
-  - component: {fileID: 5840379805725188760}
-  - component: {fileID: 4232847613577634308}
-  - component: {fileID: 1019213095569276344}
-  m_Layer: 0
-  m_Name: ShotgunPellet
+  - component: {fileID: 7626655491272553687}
+  - component: {fileID: 8471571075231697329}
+  - component: {fileID: 7474511537325309704}
+  - component: {fileID: 5057929897992182855}
+  - component: {fileID: 416857412154551061}
+  m_Layer: 6
+  m_Name: Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4321211239491374511
+--- !u!4 &7626655491272553687
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1294796973231618114}
+  m_GameObject: {fileID: 6015260818798401199}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.02, y: 0.02, z: 0.02}
+  m_LocalPosition: {x: 0, y: 6, z: -223}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &7973758862552003078
+--- !u!33 &8471571075231697329
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1294796973231618114}
+  m_GameObject: {fileID: 6015260818798401199}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &4488876481565668732
+--- !u!23 &7474511537325309704
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1294796973231618114}
+  m_GameObject: {fileID: 6015260818798401199}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -86,13 +85,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &5840379805725188760
+--- !u!135 &5057929897992182855
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1294796973231618114}
+  m_GameObject: {fileID: 6015260818798401199}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -107,44 +106,21 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &4232847613577634308
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1294796973231618114}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &1019213095569276344
+--- !u!114 &416857412154551061
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1294796973231618114}
+  m_GameObject: {fileID: 6015260818798401199}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 691ee01f14d2d8944a7b5ac2b0178d55, type: 3}
+  m_Script: {fileID: 11500000, guid: 780eac90dfbdea748be46b1b81ad1b25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifetime: 5
-  damage: 5
+  effectObjects: []
+  canBeHit: 1
+  targetCooldown: -1
+  effectStartDelay: 0
+  activeMat: {fileID: 2100000, guid: 63e3008a73db5df4b89e7d1e198017fb, type: 2}
+  deactiveMat: {fileID: 2100000, guid: e5e5e6aa54b96b049ab550cb25128e90, type: 2}
