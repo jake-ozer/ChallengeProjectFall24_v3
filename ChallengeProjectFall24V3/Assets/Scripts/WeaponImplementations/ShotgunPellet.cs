@@ -14,7 +14,7 @@ public class ShotgunPellet : MonoBehaviour
     private void OnCollisionEnter(Collision hit) { 
         if(hit.collider.gameObject.GetComponent<ITakeHit>() != null)
         {
-            Debug.Log("You hit " + hit.collider.gameObject.name);
+            //Debug.Log("You hit " + hit.collider.gameObject.name);
             hit.collider.gameObject.GetComponent<ITakeHit>().Hit(damage);
             Destroy(gameObject);
         }

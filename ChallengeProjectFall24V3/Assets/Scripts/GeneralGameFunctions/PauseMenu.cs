@@ -41,6 +41,7 @@ public class PauseMenu : MonoBehaviour
         paused = !paused;
         menuObj.SetActive(paused);
         FindObjectOfType<PlayerShoot>().enabled = !paused;
+        FindObjectOfType<PlayerSlide>().enabled = !paused;
         Cursor.lockState = paused ? CursorLockMode.None : CursorLockMode.Locked;
         Cursor.visible = paused;
         crosshairGO.SetActive(!paused);
