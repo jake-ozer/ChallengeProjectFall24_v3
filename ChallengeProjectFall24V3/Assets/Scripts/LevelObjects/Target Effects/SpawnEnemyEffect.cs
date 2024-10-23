@@ -20,7 +20,7 @@ public class SpawnEnemyEffect : MonoBehaviour, ITargetEffect
         
     }
 
-    public void Effect()
+    public void Effect(int timer)
     {
         Instantiate(enemyPrefab, transform.position, transform.rotation);
     }

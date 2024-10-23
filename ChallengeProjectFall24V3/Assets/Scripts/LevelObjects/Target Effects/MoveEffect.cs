@@ -11,22 +11,32 @@ public class MoveEffect : MonoBehaviour, ITargetEffect
     private Vector3 moveDistance;
     [SerializeField]
     private float effectStartDelay;
+    [SerializeField]
+    private float resetSpeed;
 
     Vector3 moveDestination;
     bool moving;
+    bool returning;
+
+    private Vector3 spawnPosition;
+
+    private float effectTimer;
     
 
     // Start is called before the first frame update
     void Start()
     {
         moving = false;
+        returning = false;
         moveDestination = transform.position + moveDistance;
+        spawnPosition = transform.position;
+        effectTimer = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (moving)
+        if (moving && !returning)
         {
             transform.position = Vector3.MoveTowards(transform.position, moveDestination, moveSpeed * Time.deltaTime);
 
@@ -36,11 +46,21 @@ public class MoveEffect : MonoBehaviour, ITargetEffect
                 moveDestination = transform.position + moveDistance;
             }
         }
+        else if (returning)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, spawnPosition, resetSpeed * Time.deltaTime);
+            if(transform.position == spawnPosition)
+            {
+                returning = false;
+                moveDestination = transform.position + moveDistance;
+            }
+        }
 
     }
 
-    public void Effect()
+    public void Effect(int effectTimer)
     {
+        this.effectTimer = effectTimer;
         StartCoroutine(EffectStartDelay());
     }
     
@@ -48,5 +68,10 @@ public class MoveEffect : MonoBehaviour, ITargetEffect
     {
         yield return new WaitForSeconds(effectStartDelay);
         moving = true;
+        if(effectTimer != 0)
+        {
+            yield return new WaitForSeconds(effectTimer);
+            returning = true;
+        }
     }
 }

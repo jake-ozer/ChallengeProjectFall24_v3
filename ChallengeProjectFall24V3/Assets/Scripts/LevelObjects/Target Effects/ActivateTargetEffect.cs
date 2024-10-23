@@ -19,7 +19,7 @@ public class ActivateTargetEffect : MonoBehaviour, ITargetEffect
         
     }
 
-    public void Effect()
+    public void Effect(int eventTimer)
     {
         StartCoroutine(StartDelay());
     }
