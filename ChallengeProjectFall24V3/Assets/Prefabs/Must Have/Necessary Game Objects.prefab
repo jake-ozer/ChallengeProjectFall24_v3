@@ -1620,6 +1620,10 @@ PrefabInstance:
       propertyPath: fireRate
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2843455858480871086, guid: 0ce319c94dc5f6c4f9ceb65619664415, type: 3}
+      propertyPath: fakePelletPrefab
+      value: 
+      objectReference: {fileID: 1019213095569276344, guid: 212ae68854e17e544857d57f67118bf0, type: 3}
     - target: {fileID: 6509911235224700586, guid: 0ce319c94dc5f6c4f9ceb65619664415, type: 3}
       propertyPath: m_Name
       value: Shotgun
