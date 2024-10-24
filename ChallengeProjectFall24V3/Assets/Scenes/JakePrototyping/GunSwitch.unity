@@ -354,7 +354,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 961e7dc429fc5854db79c3305378713c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curWeapon: {fileID: 6314138415651297326}
+  curWeapon: {fileID: 826027845}
   pistolObj: {fileID: 6314138415651297326}
   shotgunObj: {fileID: 826027845}
 --- !u!4 &216456692
@@ -1372,7 +1372,7 @@ MonoBehaviour:
   controller: {fileID: 688563597}
   playerMovement: {fileID: 688563598}
   playerVision: {fileID: 2115744122}
-  slideSpeed: 2
+  slideSpeed: 0
   cameraMoveSpeed: 0.002
   slideTime: 1
 --- !u!114 &688563601
@@ -1424,7 +1424,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 531415116649035809, guid: 0ce319c94dc5f6c4f9ceb65619664415, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.14
+      value: -1.1400001
       objectReference: {fileID: 0}
     - target: {fileID: 531415116649035809, guid: 0ce319c94dc5f6c4f9ceb65619664415, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1432,19 +1432,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 531415116649035809, guid: 0ce319c94dc5f6c4f9ceb65619664415, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.10023758
+      value: -0.100237586
       objectReference: {fileID: 0}
     - target: {fileID: 531415116649035809, guid: 0ce319c94dc5f6c4f9ceb65619664415, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.004990117
+      value: -0.0049901176
       objectReference: {fileID: 0}
     - target: {fileID: 531415116649035809, guid: 0ce319c94dc5f6c4f9ceb65619664415, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.99372035
+      value: -0.9937204
       objectReference: {fileID: 0}
     - target: {fileID: 531415116649035809, guid: 0ce319c94dc5f6c4f9ceb65619664415, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.049470276
+      value: 0.04947028
       objectReference: {fileID: 0}
     - target: {fileID: 531415116649035809, guid: 0ce319c94dc5f6c4f9ceb65619664415, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1462,13 +1462,41 @@ PrefabInstance:
       propertyPath: fireRate
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2843455858480871086, guid: 0ce319c94dc5f6c4f9ceb65619664415, type: 3}
+      propertyPath: _numPellets
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 2843455858480871086, guid: 0ce319c94dc5f6c4f9ceb65619664415, type: 3}
+      propertyPath: _pelletSpeed
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2843455858480871086, guid: 0ce319c94dc5f6c4f9ceb65619664415, type: 3}
+      propertyPath: pelletPrefab
+      value: 
+      objectReference: {fileID: 1019213095569276344, guid: e991755747813204e91a2739d1e6128f, type: 3}
+    - target: {fileID: 2843455858480871086, guid: 0ce319c94dc5f6c4f9ceb65619664415, type: 3}
+      propertyPath: _muzzleOffset.x
+      value: 0.91
+      objectReference: {fileID: 0}
+    - target: {fileID: 2843455858480871086, guid: 0ce319c94dc5f6c4f9ceb65619664415, type: 3}
+      propertyPath: _muzzleOffset.y
+      value: 0.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 2843455858480871086, guid: 0ce319c94dc5f6c4f9ceb65619664415, type: 3}
+      propertyPath: _muzzleOffset.z
+      value: -2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2843455858480871086, guid: 0ce319c94dc5f6c4f9ceb65619664415, type: 3}
+      propertyPath: fakePelletPrefab
+      value: 
+      objectReference: {fileID: 1019213095569276344, guid: 212ae68854e17e544857d57f67118bf0, type: 3}
     - target: {fileID: 6509911235224700586, guid: 0ce319c94dc5f6c4f9ceb65619664415, type: 3}
       propertyPath: m_Name
       value: Shotgun
       objectReference: {fileID: 0}
     - target: {fileID: 6509911235224700586, guid: 0ce319c94dc5f6c4f9ceb65619664415, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2822,8 +2850,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6695590148672537236}
-  - {fileID: 845919497}
   - {fileID: 2019409769}
+  - {fileID: 845919497}
   m_Father: {fileID: 688563596}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2115744126
@@ -3200,4 +3228,8 @@ SceneRoots:
   - {fileID: 372109985}
   - {fileID: 1503091680}
   - {fileID: 1824550980}
+<<<<<<< HEAD
   - {fileID: 1082396165}
+=======
+  - {fileID: 896129100}
+>>>>>>> lennart
