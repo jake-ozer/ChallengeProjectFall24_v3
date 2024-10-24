@@ -53,7 +53,12 @@ public class SpeedState : MonoBehaviour
 
         }else//Speed up
         {
-            FindObjectOfType<RankManager>().addKill(1);
+            var rankManager = FindObjectOfType<RankManager>();
+            if(rankManager != null)
+            {
+                rankManager.addKill(1);
+            }
+                
             if (this.currState < stateCount) //If speed state isn't stateCount (highest state)
             {
                 Debug.Log("Speed Up!!");
