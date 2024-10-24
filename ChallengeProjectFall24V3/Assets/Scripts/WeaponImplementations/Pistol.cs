@@ -37,7 +37,7 @@ public class Pistol : MonoBehaviour, IWeapon
             RaycastHit hit;
             if (Physics.Raycast(camTransform.position, camTransform.forward, out hit, Mathf.Infinity, enemyLayer))
             {
-                Debug.Log("You hit " + hit.collider.gameObject.name);
+                //Debug.Log("You hit " + hit.collider.gameObject.name);
                 hit.collider.gameObject.GetComponent<ITakeHit>().Hit(damage);
             }
 

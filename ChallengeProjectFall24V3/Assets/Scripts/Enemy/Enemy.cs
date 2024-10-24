@@ -7,13 +7,16 @@ public class Enemy : MonoBehaviour, ITakeHit
     [SerializeField] private int health;
     [SerializeField] private HealthBar healthBar;
     [SerializeField] private int damageDealt;
+    [SerializeField] private GameObject explosionEffect;
+    [SerializeField] private AudioClip explosionSound;
+    [SerializeField] private AudioClip deathSound;
     private SpeedState spdState;
 
 
     private void Awake()
     {
         healthBar.SetMaxHealth(health);
-        //spdState = FindObjectOfType<SpeedState>();
+        spdState = FindObjectOfType<SpeedState>();
         
     }
 
@@ -34,9 +37,23 @@ public class Enemy : MonoBehaviour, ITakeHit
 
     private void Die()
     {
-        Destroy(gameObject);
-        //spdState.UpdateSpeedState(true);
+        Instantiate(explosionEffect, transform.position, Quaternion.identity);
+        GetComponent<AudioSource>().PlayOneShot(explosionSound);
+        GetComponent<AudioSource>().PlayOneShot(deathSound);
+        spdState.UpdateSpeedState(true);
+        //disable all children, then destroy itself
+        int childCount = transform.childCount;
+        for(int i = 0; i < childCount; i++)
+        {
+            transform.GetChild(i).gameObject.SetActive(false);
+        }
+        Invoke("DestroyAfterTime", 2f);
 
+    }
+
+    private void DestroyAfterTime()
+    {
+        Destroy(gameObject);
     }
 
     public int getDamageDealt()
