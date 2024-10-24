@@ -68,7 +68,7 @@ public class MoveEffect : MonoBehaviour, ITargetEffect
     {
         yield return new WaitForSeconds(effectStartDelay);
         moving = true;
-        if(effectTimer != 0)
+        if(effectTimer >= 0)
         {
             yield return new WaitForSeconds(effectTimer);
             returning = true;
