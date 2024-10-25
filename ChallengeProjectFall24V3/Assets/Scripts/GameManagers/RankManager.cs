@@ -19,7 +19,10 @@ public class RankManager : MonoBehaviour
     void Start()
     {
         Enemy[] preplacedEnemyList = FindObjectsOfType<Enemy>();
-        startEnemies += FindObjectOfType<EnemySpawner>().GetEnemySpawnWall().transform.childCount; //Gets all spawn point enemies (enemies that haven't spawned yet)
+        if(FindObjectOfType<EnemySpawner>() != null)
+        {
+            startEnemies += FindObjectOfType<EnemySpawner>().GetEnemySpawnWall().transform.childCount;//Gets all spawn point enemies (enemies that haven't spawned yet)
+        } 
         this.SetTotalEnemies(preplacedEnemyList.Length + startEnemies); //adds preplaced and enemies yet to be spawned.
 
     }

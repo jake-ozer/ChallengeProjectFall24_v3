@@ -34,5 +34,10 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
+    public Collider GetEnemySpawnWall()
+    {
+        return this.enemySpawnWall;
+    }
+
 
 }
