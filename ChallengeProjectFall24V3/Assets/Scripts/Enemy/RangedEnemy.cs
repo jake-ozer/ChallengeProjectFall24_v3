@@ -11,15 +11,15 @@ public class RangedEnemy : MonoBehaviour
     public GameObject enemyBullet;
     public Transform spawnPoint;
     public float enemySpeed;
+    private bool first = true;
     
     
 
     // Update is called once per frame
     void Update()
     {
-        
-        this.gameObject.transform.LookAt(Player, Vector3.up);
         ShootAtPlayer();
+        transform.LookAt(Player.transform.position);
     }
 
     
@@ -29,13 +29,18 @@ public class RangedEnemy : MonoBehaviour
         bulletTime -= Time.deltaTime;
 
         if (bulletTime > 0) return;
+        //Doesn't shoot instantly.
+        first = false;
+        if(first == false)
+        {
+            bulletTime = timer;
 
-        bulletTime = timer;
-
-        GameObject bulletObj = Instantiate(enemyBullet, spawnPoint.transform.position, spawnPoint.transform.rotation) as GameObject;
-        Rigidbody bulletRig = bulletObj.GetComponent<Rigidbody>();
-        bulletRig.AddForce(bulletRig.transform.forward * enemySpeed);
-        Destroy(bulletObj, 5f);
+            GameObject bulletObj = Instantiate(enemyBullet, spawnPoint.transform.position, spawnPoint.transform.rotation) as GameObject;
+            Rigidbody bulletRig = bulletObj.GetComponent<Rigidbody>();
+            bulletRig.AddForce(bulletRig.transform.forward * enemySpeed);
+            Destroy(bulletObj, 5f);
+        }
+        
     }
 
 

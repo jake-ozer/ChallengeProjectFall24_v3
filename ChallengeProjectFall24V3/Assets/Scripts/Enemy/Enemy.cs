@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class Enemy : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private HealthBar healthBar;
     [SerializeField] private int damageDealt;
     private SpeedState spdState;
+   
 
 
     private void Awake()
