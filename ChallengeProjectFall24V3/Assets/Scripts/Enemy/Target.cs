@@ -83,7 +83,6 @@ public class Target : MonoBehaviour, ITakeHit, ITargetEffect
     private IEnumerator EventTimer()
     {
         displayTimer = true;
-        Debug.Log("Event Timer");
         yield return new WaitForSeconds(1);
         remainingTime--;
         if (remainingTime > 0)

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 
 public class PlayerSlide : MonoBehaviour
@@ -17,12 +18,19 @@ public class PlayerSlide : MonoBehaviour
     private bool dirSlide;
     private Vector3 initCamPos;
     private Vector3 movement;
+    
+    //Jackson's Variables
+    private bool tryingToSlide;
+    [SerializeField] private bool canBuffer;
+    [SerializeField]
+    private float bufferTimer;
+
 
     // Start is called before the first frame update
     void Awake()
     {
         input = new MainInput();
-        initCamPos = playerVision.transform.position;
+        initCamPos = playerVision.transform.localPosition;
     }
 
     // --------- enable/disbale input when script toggled on/off -------------- 
@@ -41,10 +49,18 @@ public class PlayerSlide : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (input.Ground.Slide.triggered && !sliding && playerMovement.onGround()) //make sure player can't slide in air or when already sliding
+
+        if(input.Ground.Slide.triggered)
         {
+            StartCoroutine("SlideInput");
+        }
+
+        if (tryingToSlide && !sliding && playerMovement.onGround()) //make sure player can't slide in air or when already sliding
+        {         
             Debug.Log("You pressed slide");
             StartCoroutine("Slide");
+            StopCoroutine("SlideInput");
+            tryingToSlide = false;
         }
 
 
@@ -52,14 +68,13 @@ public class PlayerSlide : MonoBehaviour
 
         if(sliding && input.Ground.Jump.triggered)
         {
-                StopCoroutine("Slide");
-                playerMovement.enabled = true;       
-                Debug.Log("Movement restored");
-                playerVision.transform.position = new Vector3(playerVision.transform.position.x, initCamPos.y, playerVision.transform.position.z);
-                playerMovement.Jump();
-                sliding = false;
-                dirSlide = false;
-
+            StopCoroutine("Slide");
+            playerMovement.enabled = true;       
+            Debug.Log("Movement restored");
+            playerVision.transform.localPosition = new Vector3(playerVision.transform.localPosition.x, initCamPos.y, playerVision.transform.localPosition.z);
+            playerMovement.Jump();
+            sliding = false;
+            dirSlide = false;
         }
 
 
@@ -82,7 +97,7 @@ public class PlayerSlide : MonoBehaviour
 
         //sliding marked true
         sliding = true;
-        initCamPos.y = playerVision.transform.position.y;
+        initCamPos.y = playerVision.transform.localPosition.y;
 
         //Get player's velocty in x and z direction (left and right).
         float xDir = playerMovement.getDirectionalVelo().x;
@@ -105,12 +120,28 @@ public class PlayerSlide : MonoBehaviour
         playerMovement.enabled = true;
         Debug.Log("Movement restored");
         sliding = false;
-        playerVision.transform.position = new Vector3(playerVision.transform.position.x, initCamPos.y, playerVision.transform.position.z);
+        playerVision.transform.localPosition = new Vector3(playerVision.transform.localPosition.x, initCamPos.y, playerVision.transform.localPosition.z);
 
         playerMovement.Jump();
         if(dirSlide = true)
         {
             dirSlide = false;
         }
+    }
+
+    //Jackson Methods
+    public bool IsSliding()
+    {
+        return sliding;
+    }
+
+    private IEnumerator SlideInput()
+    {
+        tryingToSlide = true;
+        if (canBuffer)
+            yield return new WaitForSeconds(bufferTimer);
+        else
+            yield return new WaitForEndOfFrame();
+        tryingToSlide = false;
     }
 }

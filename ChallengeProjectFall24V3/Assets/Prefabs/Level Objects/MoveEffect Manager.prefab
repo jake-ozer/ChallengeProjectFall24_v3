@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 190934284496467819}
   - component: {fileID: 1572251907774864222}
+  - component: {fileID: 1028396588134687421}
+  - component: {fileID: 1593840076288538736}
   m_Layer: 0
   m_Name: MoveEffect Manager
   m_TagString: Untagged
@@ -46,5 +48,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 0
   moveDistance: {x: 0, y: 0, z: 0}
+  moveDirection: {x: 0, y: 0, z: 0}
   effectStartDelay: 0
   resetSpeed: 0
+  movePlayer: 0
+  player: {fileID: 0}
+--- !u!114 &1028396588134687421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7733967044938658457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d0cfd356e905054d86a968d20860692, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &1593840076288538736
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7733967044938658457}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 8, y: 1.2, z: 8}
+  m_Center: {x: 0, y: 0, z: 0}
