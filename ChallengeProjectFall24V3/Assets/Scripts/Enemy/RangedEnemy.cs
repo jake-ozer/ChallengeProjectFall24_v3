@@ -12,8 +12,13 @@ public class RangedEnemy : MonoBehaviour
     public Transform spawnPoint;
     public float enemySpeed;
     private bool first = true;
-    
-    
+
+
+    private void Start()
+    {
+        Player = GameObject.FindWithTag("Player").transform;
+    }
+
 
     // Update is called once per frame
     void Update()
