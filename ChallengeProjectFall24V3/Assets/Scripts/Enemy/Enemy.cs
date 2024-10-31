@@ -37,6 +37,7 @@ public class Enemy : MonoBehaviour, ITakeHit
 
     private void Die()
     {
+        Debug.Log("Die method called");
         Instantiate(explosionEffect, transform.position, Quaternion.identity);
         GetComponent<AudioSource>().PlayOneShot(explosionSound);
         GetComponent<AudioSource>().PlayOneShot(deathSound);
