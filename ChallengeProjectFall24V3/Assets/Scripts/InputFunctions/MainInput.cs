@@ -89,6 +89,15 @@ public partial class @MainInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""1d13e13e-6378-47b7-9657-179fc48e6a79"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -388,6 +397,28 @@ public partial class @MainInput: IInputActionCollection2, IDisposable
                     ""action"": ""SwitchWeapon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fec8d6dc-1caa-4bd9-bb87-2b3a26853d9d"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""576b542f-31e3-4b49-b821-70daeef742c7"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -403,6 +434,7 @@ public partial class @MainInput: IInputActionCollection2, IDisposable
         m_Ground_Slide = m_Ground.FindAction("Slide", throwIfNotFound: true);
         m_Ground_Wallride = m_Ground.FindAction("Wallride", throwIfNotFound: true);
         m_Ground_SwitchWeapon = m_Ground.FindAction("SwitchWeapon", throwIfNotFound: true);
+        m_Ground_Pause = m_Ground.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -471,6 +503,7 @@ public partial class @MainInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Ground_Slide;
     private readonly InputAction m_Ground_Wallride;
     private readonly InputAction m_Ground_SwitchWeapon;
+    private readonly InputAction m_Ground_Pause;
     public struct GroundActions
     {
         private @MainInput m_Wrapper;
@@ -482,6 +515,7 @@ public partial class @MainInput: IInputActionCollection2, IDisposable
         public InputAction @Slide => m_Wrapper.m_Ground_Slide;
         public InputAction @Wallride => m_Wrapper.m_Ground_Wallride;
         public InputAction @SwitchWeapon => m_Wrapper.m_Ground_SwitchWeapon;
+        public InputAction @Pause => m_Wrapper.m_Ground_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Ground; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -512,6 +546,9 @@ public partial class @MainInput: IInputActionCollection2, IDisposable
             @SwitchWeapon.started += instance.OnSwitchWeapon;
             @SwitchWeapon.performed += instance.OnSwitchWeapon;
             @SwitchWeapon.canceled += instance.OnSwitchWeapon;
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
         }
 
         private void UnregisterCallbacks(IGroundActions instance)
@@ -537,6 +574,9 @@ public partial class @MainInput: IInputActionCollection2, IDisposable
             @SwitchWeapon.started -= instance.OnSwitchWeapon;
             @SwitchWeapon.performed -= instance.OnSwitchWeapon;
             @SwitchWeapon.canceled -= instance.OnSwitchWeapon;
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
         }
 
         public void RemoveCallbacks(IGroundActions instance)
@@ -563,5 +603,6 @@ public partial class @MainInput: IInputActionCollection2, IDisposable
         void OnSlide(InputAction.CallbackContext context);
         void OnWallride(InputAction.CallbackContext context);
         void OnSwitchWeapon(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
 }
