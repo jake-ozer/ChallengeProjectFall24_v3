@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 
 public class PlayerSlide : MonoBehaviour
@@ -17,13 +16,12 @@ public class PlayerSlide : MonoBehaviour
     private bool sliding = false;
     private bool dirSlide;
     private Vector3 initCamPos;
-    private Vector3 movement;
+    [SerializeField] private Vector3 movement;
     
     //Jackson's Variables
     private bool tryingToSlide;
     [SerializeField] private bool canBuffer;
-    [SerializeField]
-    private float bufferTimer;
+    [SerializeField] private float bufferTimer;
 
 
     // Start is called before the first frame update
@@ -88,11 +86,14 @@ public class PlayerSlide : MonoBehaviour
             {
                 controller.Move(movement * (playerMovement.speed * slideSpeed) * Time.deltaTime);
             }
-            
+
         }
     }
     private IEnumerator Slide()
     {
+        //Outside movement stuff
+        RedirectVelocity();
+
         playerMovement.enabled = false;
 
         //sliding marked true
@@ -143,5 +144,19 @@ public class PlayerSlide : MonoBehaviour
         else
             yield return new WaitForEndOfFrame();
         tryingToSlide = false;
+    }
+
+    private void RedirectVelocity()
+    {
+        Vector3 velocity = playerMovement.GetOutsideVelocity();
+        float speed = Mathf.Abs(velocity.x) + Mathf.Abs(velocity.z);
+        Vector3 movement = transform.forward;
+        Vector3 newVelocity = new Vector3(movement.x * speed, 0, movement.z * speed);
+        playerMovement.SetOutsideVelocity(newVelocity, false);
+    }
+
+    public bool isTryingToSlide()
+    {
+        return tryingToSlide;
     }
 }

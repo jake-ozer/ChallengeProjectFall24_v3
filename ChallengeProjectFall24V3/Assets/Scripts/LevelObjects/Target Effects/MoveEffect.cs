@@ -24,9 +24,8 @@ public class MoveEffect : MonoBehaviour, ITargetEffect
 
     private float effectTimer;
 
-    [SerializeField]
     private bool movePlayer;
-    [SerializeField]
+
     private GameObject player;
 
     // Start is called before the first frame update
@@ -44,32 +43,42 @@ public class MoveEffect : MonoBehaviour, ITargetEffect
     // Update is called once per frame
     void Update()
     {
+        //Moves platform towards destination
         if (moving && !returning)
         {
+            //Moves player if they are standing on it
             if (movePlayer)
-            {
-                //player.transform.position = Vector3.MoveTowards(transform.position, moveDestination, moveSpeed * Time.deltaTime);
                 player.GetComponent<PlayerMovement>().SetOutsideVelocity(moveDirection * moveSpeed, true);
-            }
+            
             transform.position = Vector3.MoveTowards(transform.position, moveDestination, moveSpeed * Time.deltaTime);
 
+            //Stops moving once it reaches it's destination
             if (transform.position == moveDestination)
             {
                 moving = false;
                 moveDestination = transform.position + moveDistance;
+                //Moves player
                 if (movePlayer)
                     player.GetComponent<PlayerMovement>().SetOutsideVelocity(Vector3.zero, false); ;
             }
         }
+
+        //Moves platform back to original position
         else if (returning)
         {
+            //Moves player if standing on it
             if (movePlayer)
                 player.GetComponent<PlayerMovement>().SetOutsideVelocity(-moveDirection * resetSpeed, true);
+
             transform.position = Vector3.MoveTowards(transform.position, spawnPosition, resetSpeed * Time.deltaTime);
+
+            //Stops once platform reaches original spot
             if (transform.position == spawnPosition)
             {
                 returning = false;
                 moveDestination = transform.position + moveDistance;
+
+                //Stops player if they are standing on it
                 if (movePlayer)
                     player.GetComponent<PlayerMovement>().SetOutsideVelocity(Vector3.zero, false);
             }
@@ -77,12 +86,14 @@ public class MoveEffect : MonoBehaviour, ITargetEffect
 
     }
 
+    //Called by Target object when shot
     public void Effect(int effectTimer)
     {
         this.effectTimer = effectTimer;
         StartCoroutine(EffectStartDelay());
     }
     
+    //Waits to start effect
     private IEnumerator EffectStartDelay()
     {
         yield return new WaitForSeconds(effectStartDelay);
@@ -94,6 +105,7 @@ public class MoveEffect : MonoBehaviour, ITargetEffect
         }
     }
 
+    //If player is standing on platform, makes it so player moves as well
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag.Equals("Player"))
@@ -103,6 +115,7 @@ public class MoveEffect : MonoBehaviour, ITargetEffect
         }
     }
 
+    //Once player leaves platform stops moving them
     private void OnTriggerExit(Collider other)
     {
         if (other.tag.Equals("Player"))

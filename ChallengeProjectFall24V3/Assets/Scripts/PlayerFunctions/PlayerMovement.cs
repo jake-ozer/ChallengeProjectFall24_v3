@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -31,16 +32,16 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 movement;
 
     //Jackson's Addition
-    [SerializeField]
     private Vector3 outsideVelocity;
     private bool ignoreGround;
-    [SerializeField] private Vector3 storedMomentum;
-    [SerializeField] private bool isMoved;
+    private Vector3 storedMomentum;
+    private bool isMoved;
     [Header("Jackson's Variables")]
     [SerializeField] private float outsideVelocityDeceleration;
     [SerializeField] private float outsideAirDeceleration;
     [SerializeField] private float storedMomentumTimer;
     private float timer;
+    bool jumping;
 
     private void Awake()
     {
@@ -51,6 +52,21 @@ public class PlayerMovement : MonoBehaviour
         //Jackson's variables
         outsideVelocity = new Vector3(0, 0, 0);
         ignoreGround = false;
+        jumping = false;
+
+        input.Ground.Jump.performed += JumpPerformed;
+        input.Ground.Jump.canceled += JumpCanceled;
+    }
+
+    // --------------  tracks if jump is being held -------------- 
+    private void JumpPerformed(InputAction.CallbackContext context)
+    {
+        jumping = true;
+    }
+
+    private void JumpCanceled(InputAction.CallbackContext context)
+    {
+        jumping = false;
     }
 
     // --------- enable/disbale input when script toggled on/off -------------- 
@@ -97,6 +113,7 @@ public class PlayerMovement : MonoBehaviour
         float zDir = move.y;
 
         movement = transform.right * xDir + transform.forward * zDir;
+
         controller.Move(movement * speed * Time.deltaTime);
     }
 
@@ -146,11 +163,26 @@ public class PlayerMovement : MonoBehaviour
     }
 
     //  ------------------------Jackson's Methods------------------------------
+
+    /*
+     * Returns movement Vector
+     */
+    public Vector3 GetMovement()
+    {
+        return movement;
+    }
+
+    /*
+     * Adds Velocty
+     */
     public void AddOutsideVelocity(Vector3 velocity)
     {
         outsideVelocity += velocity;
     }
 
+    /*
+     * Sets outside velocity
+     */
     public void SetOutsideVelocity(Vector3 velocity, bool storeMomentum)
     {
         outsideVelocity = velocity;
@@ -164,14 +196,20 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    /*
+     * Returns outside velocity
+     */
+    public Vector3 GetOutsideVelocity()
+    {
+        return outsideVelocity;
+    }
+
 
     private void OutsideMovement()
     {
         isMoved = false;
 
-        controller.Move(outsideVelocity * Time.deltaTime);
-
-
+        //Handles momentum that is stored and then used when player jumps
         if (timer <= 0 && storedMomentum != Vector3.zero)
         {
             storedMomentum = Vector3.zero;
@@ -185,14 +223,17 @@ public class PlayerMovement : MonoBehaviour
 
     private void LateOutsideMovement()
     {
+        //Releases stored momentum when player jumps
         if (isGrounded && input.Ground.Jump.triggered && storedMomentum != Vector3.zero)
         {
             outsideVelocity = storedMomentum;
             Jump();
         }
 
-        if (!isMoved && isGrounded && !gameObject.GetComponent<PlayerSlide>().IsSliding())
+        //Slow player down while on the ground unlesss they are sliding
+        if (!isMoved && isGrounded && !(gameObject.GetComponent<PlayerSlide>().IsSliding() || gameObject.GetComponent<PlayerSlide>().isTryingToSlide()))
         {
+            //Consistent deceleration rate while player is grounded
             float newXVelocity = Mathf.MoveTowards(outsideVelocity.x, 0, outsideVelocityDeceleration * Time.deltaTime);
             float newYVelocity = outsideVelocity.y;
             if (!ignoreGround)
@@ -200,31 +241,41 @@ public class PlayerMovement : MonoBehaviour
             float newZVelocity = Mathf.MoveTowards(outsideVelocity.z, 0, outsideVelocityDeceleration * Time.deltaTime);
 
             outsideVelocity = new Vector3(newXVelocity, newYVelocity, newZVelocity);
+
+
+            //If player slows down thier outside velocity decreases as well
+            Vector3 totalVelocity = outsideVelocity + movement * speed;
+            if(Mathf.Abs(totalVelocity.x) < Mathf.Abs(outsideVelocity.x))
+            {
+                outsideVelocity = new Vector3(totalVelocity.x, outsideVelocity.y, outsideVelocity.z);
+            }
+            if(Mathf.Abs(totalVelocity.z) < Mathf.Abs(outsideVelocity.z))
+            {
+                outsideVelocity = new Vector3(outsideVelocity.x, outsideVelocity.y, totalVelocity.z);
+            }
         }
 
-        
-        else if(!isMoved && !isGrounded)
+        //Slow player while they are in the air unless they are holding jump
+        else if(!isMoved && !isGrounded && !jumping)
         {
             float newXVelocity = outsideVelocity.x;
             float newZVelocity = outsideVelocity.z;
 
             if(newXVelocity * movement.x < 0)
             {
-                //Decelerate in air X
-                Debug.Log("X Decelerate");
                 newXVelocity = Mathf.MoveTowards(newXVelocity, 0, outsideAirDeceleration * Time.deltaTime * Mathf.Abs(movement.x));
             }
 
             if(newZVelocity * movement.y < 0)
             {
-                Debug.Log("Z Decelerate");
                 newZVelocity = Mathf.MoveTowards(newZVelocity, 0, outsideAirDeceleration * Time.deltaTime * Mathf.Abs(movement.z));
             }
 
             outsideVelocity = new Vector3(newXVelocity, outsideVelocity.y, newZVelocity);
         }
-        
+
+
+        controller.Move(outsideVelocity * Time.deltaTime);
+
     }
-
-
 }
