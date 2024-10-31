@@ -327,6 +327,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   groundCheck: {fileID: 3257640989920901566}
+  move: {x: 0, y: 0}
+  movement: {x: 0, y: 0, z: 0}
+  outsideVelocityDeceleration: 0
+  outsideAirDeceleration: 0
+  storedMomentumTimer: 0
 --- !u!114 &1423836127255544602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -358,6 +363,9 @@ MonoBehaviour:
   slideSpeed: 2
   cameraMoveSpeed: 0.002
   slideTime: 1
+  movement: {x: 0, y: 0, z: 0}
+  canBuffer: 0
+  bufferTimer: 0
 --- !u!114 &4783429435373706111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -494,7 +502,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6611418196769224067
 Transform:
   m_ObjectHideFlags: 0
