@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class Enemy : MonoBehaviour, ITakeHit
 {
@@ -11,6 +12,7 @@ public class Enemy : MonoBehaviour, ITakeHit
     [SerializeField] private AudioClip explosionSound;
     [SerializeField] private AudioClip deathSound;
     private SpeedState spdState;
+   
 
 
     private void Awake()

@@ -13,7 +13,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private GameObject enemyPrefab;
     private bool trigger = false;
     private bool spawnObj = false;
-    private int spawners;
+
+   
 
     private void OnTriggerEnter(Collider other)
     {
@@ -21,7 +22,7 @@ public class EnemySpawner : MonoBehaviour
         {
             if (!trigger) {
                 
-                spawners = enemySpawnWall.transform.childCount;
+                int spawners = enemySpawnWall.transform.childCount;
                 Debug.Log("Collision Triggered!");
                 for (int i = 0; i < spawners; i++)
                 {
@@ -32,11 +33,6 @@ public class EnemySpawner : MonoBehaviour
                 
             }
         }
-    }
-
-    public int getSpawners()
-    {
-        return this.spawners;
     }
 
     public Collider GetEnemySpawnWall()
