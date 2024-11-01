@@ -12,6 +12,7 @@ public class RangedEnemy : MonoBehaviour
     public Transform spawnPoint;
     public float enemySpeed;
     private bool first = true;
+    public bool canShoot = false;
 
 
     private void Start()
@@ -23,8 +24,17 @@ public class RangedEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ShootAtPlayer();
-        transform.LookAt(Player.transform.position);
+        //observe EnemyVision, if seen once, shoot player forever after
+        if (GetComponent<EnemyVision>().canSeePlayer)
+        {
+            canShoot = true;
+        }
+
+        if (canShoot)
+        {
+            ShootAtPlayer();
+            transform.LookAt(Player.transform.position);
+        }
     }
 
     

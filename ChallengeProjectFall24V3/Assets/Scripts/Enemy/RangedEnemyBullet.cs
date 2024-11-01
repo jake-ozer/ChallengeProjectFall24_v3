@@ -7,6 +7,10 @@ public class RangedEnemyBullet : MonoBehaviour
     public int bulletDamage;
     private void OnTriggerEnter(Collider other)
     {
+        if(other.gameObject.tag == "Wall")
+        {
+            Destroy(gameObject);
+        }
         
         if(other.gameObject.tag == "Player")
         {

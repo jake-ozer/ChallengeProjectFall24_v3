@@ -183,7 +183,7 @@ GameObject:
   - component: {fileID: 4783429435373706111}
   - component: {fileID: 346889950537627271}
   - component: {fileID: 384541766859783980}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -561,7 +561,7 @@ GameObject:
   - component: {fileID: 2513391354564454119}
   - component: {fileID: 8478244638045079334}
   - component: {fileID: 657576834187807864}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: PlayerWallRider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
