@@ -7,6 +7,7 @@ public class Shotgun : MonoBehaviour, IWeapon
     [SerializeField] private Animator gunAnim;
     [SerializeField] private float fireRate;
     [SerializeField] AudioClip shootSFX;
+    [SerializeField] AudioClip slideSFX;
     private AudioSource gunSource;
     public Transform camTransform;
     public ShotgunPellet pelletPrefab;
@@ -81,5 +82,12 @@ public class Shotgun : MonoBehaviour, IWeapon
     public void ReEnableGFX()
     {
         gunGFX.SetActive(true);
+    }
+
+    //called by an animation event on the animator
+    public void PlaySlideSFX()
+    {
+        Debug.Log("cocksfx");
+        gunSource.PlayOneShot(slideSFX);
     }
 }

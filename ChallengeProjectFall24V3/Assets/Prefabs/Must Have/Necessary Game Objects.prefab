@@ -1316,7 +1316,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4321383778068110174}
-  - {fileID: 831671857507542382}
+  - {fileID: 867323715704531042}
   - {fileID: 8723995080677127053}
   m_Father: {fileID: 6022645977635954663}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1566,7 +1566,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curWeapon: {fileID: 7417584004689651157}
   pistolObj: {fileID: 7417584004689651157}
-  shotgunObj: {fileID: 6233720589843618789}
+  shotgunObj: {fileID: 56351633610249522}
 --- !u!1 &9099636323929822280
 GameObject:
   m_ObjectHideFlags: 0
@@ -1704,6 +1704,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 872983221352286333, guid: 0ce319c94dc5f6c4f9ceb65619664415, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6509911235224700586, guid: 0ce319c94dc5f6c4f9ceb65619664415, type: 3}
       propertyPath: m_Name
       value: Shotgun
@@ -1717,14 +1721,14 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ce319c94dc5f6c4f9ceb65619664415, type: 3}
---- !u!4 &831671857507542382 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 531415116649035809, guid: 0ce319c94dc5f6c4f9ceb65619664415, type: 3}
+--- !u!1 &56351633610249522 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 872983221352286333, guid: 0ce319c94dc5f6c4f9ceb65619664415, type: 3}
   m_PrefabInstance: {fileID: 924722394437672271}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &6233720589843618789 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6509911235224700586, guid: 0ce319c94dc5f6c4f9ceb65619664415, type: 3}
+--- !u!4 &867323715704531042 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 61955610699724077, guid: 0ce319c94dc5f6c4f9ceb65619664415, type: 3}
   m_PrefabInstance: {fileID: 924722394437672271}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4370554997440635775
