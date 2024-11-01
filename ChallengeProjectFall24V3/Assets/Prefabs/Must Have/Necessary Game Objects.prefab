@@ -599,7 +599,7 @@ MonoBehaviour:
   playerMovement: {fileID: 2215094390791112977}
   speedModifier: 10
   wallJumpCooldown: 1
-  wallRideSpeed: 3
+  wallRideSpeed: 2
   wallRiding: 0
   wallLayer:
     serializedVersion: 2
