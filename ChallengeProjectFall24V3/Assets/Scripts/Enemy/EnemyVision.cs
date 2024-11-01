@@ -31,20 +31,14 @@ public class EnemyVision : MonoBehaviour
         if(rangeChecks.Length != 0)
         {
             Transform target = rangeChecks[0].transform;
-            Debug.Log(target);
             Vector3 targetDir = (target.position - transform.position).normalized;
-           /* Debug.Log("targetDir: " + targetDir);
-            Debug.Log("transform forward: "+transform.forward);
-            Debug.Log("Angle: "+Vector3.Angle(transform.forward, targetDir));*/
             
             if(Vector3.Angle(transform.forward, targetDir) < angle / 2)
             {
-                //Debug.Log("angle sensed");
                 float targetDistance = Vector3.Distance(transform.position, target.position);
 
                 if(Physics.Raycast(transform.position, targetDir, targetDistance, obstructionMask))
                 {
-                    //Debug.Log("can see player: " + canSeePlayer);
                     canSeePlayer = false;
                 }
                 else

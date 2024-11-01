@@ -440,6 +440,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
   timer: 3
+  timeTillStartShooting: 1
   enemyBullet: {fileID: 1763468944054057064}
   spawnPoint: {fileID: 3287055404209429639}
   enemySpeed: 1200

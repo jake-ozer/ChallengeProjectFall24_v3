@@ -57,7 +57,7 @@ Transform:
   m_GameObject: {fileID: 268422324455438334}
   serializedVersion: 2
   m_LocalRotation: {x: -0.70468664, y: 5.7675793e-18, z: -5.985782e-18, w: 0.7095187}
-  m_LocalPosition: {x: 0, y: -0.445, z: -3.697}
+  m_LocalPosition: {x: -0.34, y: -0.82, z: -6.16}
   m_LocalScale: {x: 1.3463471, y: 0.59809387, z: 1.0278062}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -232,10 +232,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   gunAnim: {fileID: 4685772244886755101}
-  fireRate: 0
+  fireRate: 1.7
   shootSFX: {fileID: 8300000, guid: fc1c9611426ee574a88bcb6f0428e5bb, type: 3}
   camTransform: {fileID: 0}
   pelletPrefab: {fileID: 1019213095569276344, guid: e991755747813204e91a2739d1e6128f, type: 3}
+  fakePelletPrefab: {fileID: 1019213095569276344, guid: 212ae68854e17e544857d57f67118bf0, type: 3}
   _muzzleOffset: {x: 0.5, y: 0.5, z: -2.5}
   _numPellets: 16
   _pelletSpeed: 50
