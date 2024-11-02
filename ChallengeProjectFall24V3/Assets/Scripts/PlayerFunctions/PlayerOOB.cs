@@ -36,11 +36,17 @@ public class PlayerOOB : MonoBehaviour
             {
                 lastGround = hit.transform.gameObject;
             }
-            else if ((hit.transform.gameObject.layer == 11 || transform.position.y < oobFailsafeHeight) && !oob)
+            else if (hit.transform.gameObject.layer == 11 && !oob)
             {
                 StartCoroutine(Lakitu());
                 bool oob = true;
             }
+        }
+
+        if(transform.position.y < oobFailsafeHeight)
+        {
+            StartCoroutine(Lakitu());
+            bool oob = true;
         }
         
     }

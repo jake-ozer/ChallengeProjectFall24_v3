@@ -7,9 +7,11 @@ public class Shotgun : MonoBehaviour, IWeapon
     [SerializeField] private Animator gunAnim;
     [SerializeField] private float fireRate;
     [SerializeField] AudioClip shootSFX;
+    [SerializeField] AudioClip slideSFX;
     private AudioSource gunSource;
     public Transform camTransform;
     public ShotgunPellet pelletPrefab;
+    public ShotgunPellet fakePelletPrefab;
 
     [SerializeField] private Vector3 _muzzleOffset = new Vector3(0, 1.0f, 0);
     [SerializeField] private uint _numPellets = 5;
@@ -41,23 +43,21 @@ public class Shotgun : MonoBehaviour, IWeapon
         
         //gunAnim.SetTrigger("Shoot");
 
-        Vector3 offset = new Vector3(0, 0, 0);
-
         Vector3 muzzlePosition = transform.TransformPoint(_muzzleOffset);
-        for (uint i = 0; i < numPelletsSqrt; i++)
+        Vector3 fakePosition = camTransform.position;
+        fakePosition.y -= 1;
+        
+        for (uint i = 0; i < _numPellets; i++)
         {
-            for (uint j = 0; j < numPelletsSqrt; j++)
-            {
-                offset.x = i * 0.02f;
-                offset.y = j * 0.02f;
-                ShotgunPellet pellet = Instantiate(pelletPrefab, muzzlePosition + offset, Quaternion.identity);
-            
-                Vector3 spreadDirection = Random.insideUnitSphere * Mathf.Tan(_spreadAngle * Mathf.Deg2Rad);
-                Vector3 shootDirection = camTransform.forward + spreadDirection;
-                shootDirection.Normalize();
+            ShotgunPellet pellet = Instantiate(pelletPrefab, muzzlePosition, Quaternion.identity);
+            ShotgunPellet fakePellet = Instantiate(fakePelletPrefab, fakePosition, Quaternion.identity);
+        
+            Vector3 spreadDirection = Random.insideUnitSphere * Mathf.Tan(_spreadAngle * Mathf.Deg2Rad);
+            Vector3 shootDirection = camTransform.forward + spreadDirection;
+            shootDirection.Normalize();
 
-                pellet.GetComponent<Rigidbody>().velocity = shootDirection * _pelletSpeed;
-            }
+            pellet.GetComponent<Rigidbody>().velocity = shootDirection * _pelletSpeed;
+            fakePellet.GetComponent<Rigidbody>().velocity = shootDirection * _pelletSpeed;
         }
 
         shootTimer = fireRate;
@@ -82,5 +82,12 @@ public class Shotgun : MonoBehaviour, IWeapon
     public void ReEnableGFX()
     {
         gunGFX.SetActive(true);
+    }
+
+    //called by an animation event on the animator
+    public void PlaySlideSFX()
+    {
+        Debug.Log("cocksfx");
+        gunSource.PlayOneShot(slideSFX);
     }
 }

@@ -97,22 +97,4 @@ public class PlayerWallRide : MonoBehaviour
         Gizmos.color = Color.magenta;
         Gizmos.DrawWireCube(transform.position, new Vector3(wallRiderSize, 1, 1));
     }
-    /*    private void OnTriggerEnter(Collider other)
-        {
-            if(other.gameObject.tag == "Wall")
-            {
-                onWall = true;
-                //playerMovement.speed += speedModifier;
-            }
-        }
-
-        private void OnTriggerExit(Collider other)
-        {
-            if (other.gameObject.tag == "Wall")
-            {
-                onWall = false;
-                //playerMovement.speed -= speedModifier;
-                wallRiding = false;
-            }
-        }*/
 }

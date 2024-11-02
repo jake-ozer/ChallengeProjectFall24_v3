@@ -27,7 +27,10 @@ public class HealthBar : MonoBehaviour
     {
         healthSlider.value = health;
         //controller.ShowBars();
-        StartCoroutine("EaseBar");
+        if (this.enabled)
+        {
+            StartCoroutine("EaseBar");
+        }
     }
 
 

@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface ITargetEffect
 {
-    public void Effect();
+    public void Effect(int eventTimer);
 }
