@@ -17,6 +17,7 @@ public class PlayerSlide : MonoBehaviour
     private bool dirSlide;
     private Vector3 initCamPos;
     [SerializeField] private Vector3 movement;
+    public AudioClip slideSFX;
     
     //Jackson's Variables
     private bool tryingToSlide;
@@ -70,7 +71,7 @@ public class PlayerSlide : MonoBehaviour
             playerMovement.enabled = true;       
             Debug.Log("Movement restored");
             playerVision.transform.localPosition = new Vector3(playerVision.transform.localPosition.x, initCamPos.y, playerVision.transform.localPosition.z);
-            playerMovement.Jump();
+            playerMovement.Jump(true);
             sliding = false;
             dirSlide = false;
         }
@@ -91,6 +92,8 @@ public class PlayerSlide : MonoBehaviour
     }
     private IEnumerator Slide()
     {
+        GetComponent<AudioSource>().PlayOneShot(slideSFX);
+
         //Outside movement stuff
         RedirectVelocity();
 
@@ -123,7 +126,7 @@ public class PlayerSlide : MonoBehaviour
         sliding = false;
         playerVision.transform.localPosition = new Vector3(playerVision.transform.localPosition.x, initCamPos.y, playerVision.transform.localPosition.z);
 
-        playerMovement.Jump();
+        playerMovement.Jump(true);
         if(dirSlide = true)
         {
             dirSlide = false;

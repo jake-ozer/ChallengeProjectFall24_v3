@@ -87,7 +87,6 @@ public class Shotgun : MonoBehaviour, IWeapon
     //called by an animation event on the animator
     public void PlaySlideSFX()
     {
-        Debug.Log("cocksfx");
         gunSource.PlayOneShot(slideSFX);
     }
 }

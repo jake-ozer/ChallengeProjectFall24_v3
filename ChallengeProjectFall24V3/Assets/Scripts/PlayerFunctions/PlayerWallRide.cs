@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.HID;
 using UnityEngine.Windows;
+using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 public class PlayerWallRide : MonoBehaviour
 {
@@ -19,11 +21,22 @@ public class PlayerWallRide : MonoBehaviour
     private float cooldownStart;
     private Vector3 movement;
     private bool once = true;
+    public float tiltSpeed;
+    public float tiltAmount;
+    private float elapsedTime = 0;
+    private Vector3 camStartRot;
+    public Camera cam;
+    private bool resetCameraTilt = false;
+    private bool isTilting;
+    private Vector3 curRot;
+    public AudioClip wallRideSFX;
+    private bool once2 = true;
 
     void Awake()
     {
         input = new MainInput();
         cooldownStart = wallJumpCooldown;
+        camStartRot = cam.transform.rotation.eulerAngles;
     }
 
     // --------- enable/disbale input when script toggled on/off -------------- 
@@ -52,6 +65,8 @@ public class PlayerWallRide : MonoBehaviour
 
             if (once)
             {
+                transform.parent.GetComponent<AudioSource>().PlayOneShot(wallRideSFX);
+
                 //Maintain player's velocity in direction
                 if (xDir == 0 && zDir == 0)
                 {
@@ -66,35 +81,100 @@ public class PlayerWallRide : MonoBehaviour
             }
 
             controller.Move(movement * (playerMovement.speed * wallRideSpeed) * Time.deltaTime);
+            resetCameraTilt = false;
+            TiltCamera();
+            once2 = true;
         }
         else
         {
             playerMovement.enabled = true;
             once = true;
+            resetCameraTilt = true;
         }
 
         //release jump button
         if(onWall && input.Ground.Wallride.ReadValue<float>() <= 0 && wallRiding)
         {
-            playerMovement.Jump();
+            playerMovement.Jump(true);
             wallJumpCooldown = cooldownStart;
             wallRiding = false;
             once = true;
+            resetCameraTilt = true;
+            curRot = cam.transform.eulerAngles;
+            //curRot.z = (curRot.z > 180) ? curRot.z - 360 : curRot.z;
+            //Debug.Log(curRot);
         }
 
         //just falling off the wall, not jumping off
         if(input.Ground.Wallride.ReadValue<float>() <= 0)
         {
             playerMovement.enabled = true;
+            resetCameraTilt = true;
         }
 
         //check if on wall
         onWall = Physics.CheckBox(transform.position, new Vector3(wallRiderSize,1,1), Quaternion.identity, wallLayer);
+
+        //reset camera tilt if tilted
+        if(resetCameraTilt)
+        {
+            ResetCameraTilt(curRot);
+        }
     }
 
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.magenta;
         Gizmos.DrawWireCube(transform.position, new Vector3(wallRiderSize, 1, 1));
+    }
+
+    private void TiltCamera()
+    {
+        if (!isTilting)
+        {
+            isTilting = true;
+            elapsedTime = 0f; 
+        }
+
+        //check whether the wall is on our right or left
+        bool onLeft = false;
+        RaycastHit hit;
+        //check left
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.left), out hit, 1f, wallLayer))
+        {
+            onLeft = true;
+            //Debug.Log("wall on left for tilt");
+        }
+        else if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), out hit, 1f, wallLayer))
+        {
+            onLeft = false;
+            //Debug.Log("wall on right for tilt");
+        }
+        float tiltChange = onLeft ? -tiltAmount : tiltAmount;
+
+        if(elapsedTime < 1f)
+        {
+            elapsedTime = Mathf.Clamp01(elapsedTime + Time.deltaTime * tiltSpeed);
+            Vector3 newRot = new Vector3(cam.transform.rotation.eulerAngles.x, cam.transform.rotation.eulerAngles.y, camStartRot.z + tiltChange);
+            //Debug.Log(newRot);
+            cam.transform.rotation = Quaternion.Lerp(Quaternion.Euler(camStartRot), Quaternion.Euler(newRot), elapsedTime);
+        }
+
+        
+    }
+
+    private void ResetCameraTilt(Vector3 tiltedRot)
+    {
+        if (isTilting)
+        {
+            
+            elapsedTime = Mathf.Clamp01(elapsedTime - Time.deltaTime * tiltSpeed);
+            cam.transform.rotation = Quaternion.Lerp(Quaternion.Euler(camStartRot), Quaternion.Euler(tiltedRot), elapsedTime);
+
+            if (elapsedTime <= 0f)
+            {
+                isTilting = false;
+            }
+        }
     }
 }
