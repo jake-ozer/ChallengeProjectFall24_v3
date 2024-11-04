@@ -14,7 +14,7 @@ public class HealthBar : MonoBehaviour
     private float startEase;
     private float lerpFactor;
 
-    public void SetMaxHealth(int max)
+    public void SetMaxHealth(float max)
     {
         healthSlider.maxValue = max;
         healthSlider.value = max;
@@ -23,7 +23,7 @@ public class HealthBar : MonoBehaviour
         easeSlider.value = max;
     }
 
-    public void SetHealth(int health)
+    public void SetHealth(float health)
     {
         healthSlider.value = health;
         //controller.ShowBars();

@@ -149,6 +149,8 @@ MonoBehaviour:
   _pelletSpeed: 50
   _spreadAngle: 15
   gunGFX: {fileID: 9022593469382604053}
+  crosshairLoc: {fileID: 21300000, guid: 60534c3d47f78ba4689392ac004b03a4, type: 3}
+  gunEquipSFX: {fileID: 8300000, guid: 9baf2da83a49e7646b62694475cdf334, type: 3}
 --- !u!95 &7141786569390299438
 Animator:
   serializedVersion: 5

@@ -13,6 +13,7 @@ public class RangedEnemy : MonoBehaviour
     public Transform spawnPoint;
     public float enemySpeed;
     public bool canShoot = false;
+    public AudioClip shootSFX;
 
 
     private void Start()
@@ -45,7 +46,7 @@ public class RangedEnemy : MonoBehaviour
         bulletTime -= Time.deltaTime;
 
         if (bulletTime > 0) return;
-
+        GetComponent<AudioSource>().PlayOneShot(shootSFX);
         bulletTime = timer;
 
         GameObject bulletObj = Instantiate(enemyBullet, spawnPoint.transform.position, spawnPoint.transform.rotation) as GameObject;

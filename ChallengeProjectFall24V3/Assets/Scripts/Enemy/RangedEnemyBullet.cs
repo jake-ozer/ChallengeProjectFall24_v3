@@ -14,7 +14,7 @@ public class RangedEnemyBullet : MonoBehaviour
         
         if(other.gameObject.tag == "Player")
         {
-            Debug.Log("Player Hit!");
+            //Debug.Log("Player Hit!");
             Destroy(gameObject);
             other.gameObject.GetComponent<PlayerHealth>().TakeDamage(bulletDamage);
         }

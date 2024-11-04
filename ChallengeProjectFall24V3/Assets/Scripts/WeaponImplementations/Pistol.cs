@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Pistol : MonoBehaviour, IWeapon
 {
@@ -15,12 +16,26 @@ public class Pistol : MonoBehaviour, IWeapon
     private AudioSource gunSource;
     private float shootTimer = 0f;
     private bool togglePistolAnim = true;
-    
+
+    [SerializeField] public Sprite crosshairLoc;
+    public AudioClip gunEquipSFX;
+
+    public Sprite crosshair
+    {
+        get => crosshairLoc;
+        set => crosshair = value;
+    }
+
 
     private void Start()
     {
         camTransform = Camera.main.transform;
         gunSource = transform.parent.GetComponent<AudioSource>();
+    }
+
+    private void OnEnable()
+    {
+        gunSource.PlayOneShot(gunEquipSFX);
     }
 
     public void Shoot()

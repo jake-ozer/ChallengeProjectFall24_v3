@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WeaponManager : MonoBehaviour
 {
     public GameObject curWeapon;
     public GameObject pistolObj;
     public GameObject shotgunObj;
+    public GameObject crosshairObj;
 
     private MainInput input;
     private int curWeaponIndex = 0;
@@ -39,6 +41,8 @@ public class WeaponManager : MonoBehaviour
         {
             StartCoroutine("ToggleWeapon");
         }
+
+        crosshairObj.GetComponent<Image>().sprite = curWeapon.GetComponent<IWeapon>().crosshair;
     }
 
     //swap between either pistol or shotgun

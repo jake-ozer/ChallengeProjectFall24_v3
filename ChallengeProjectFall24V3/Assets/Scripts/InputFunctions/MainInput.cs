@@ -378,6 +378,17 @@ public partial class @MainInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""d394d566-3402-40d1-ac51-0eb53e98eb41"",
+                    ""path"": ""<Gamepad>/leftStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Wallride"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""c7eb0b68-0771-46ce-a031-acb7c55c8b45"",
                     ""path"": ""<Keyboard>/tab"",
                     ""interactions"": """",

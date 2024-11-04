@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class Shotgun : MonoBehaviour, IWeapon
@@ -8,7 +9,7 @@ public class Shotgun : MonoBehaviour, IWeapon
     [SerializeField] private float fireRate;
     [SerializeField] AudioClip shootSFX;
     [SerializeField] AudioClip slideSFX;
-    private AudioSource gunSource;
+    public AudioSource gunSource;
     public Transform camTransform;
     public ShotgunPellet pelletPrefab;
     public ShotgunPellet fakePelletPrefab;
@@ -18,7 +19,15 @@ public class Shotgun : MonoBehaviour, IWeapon
     [SerializeField] private float _pelletSpeed = 50f;
     [SerializeField] private float _spreadAngle = 15f;
     [SerializeField] private GameObject gunGFX;
-    
+
+    [SerializeField] public Sprite crosshairLoc;
+    public AudioClip gunEquipSFX;
+
+    public Sprite crosshair
+    {
+        get => crosshairLoc;
+        set => crosshair = value;
+    }
 
     private uint numPelletsSqrt;
     private float shootTimer;
@@ -29,6 +38,11 @@ public class Shotgun : MonoBehaviour, IWeapon
         camTransform = Camera.main.transform;
         numPelletsSqrt = (uint)Mathf.Sqrt(_numPellets);
         gunSource = transform.parent.GetComponent<AudioSource>();
+    }
+
+    private void OnEnable()
+    {
+        gunSource.PlayOneShot(gunEquipSFX);
     }
 
     public void Shoot()

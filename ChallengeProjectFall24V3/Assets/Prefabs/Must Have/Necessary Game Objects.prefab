@@ -383,6 +383,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 119228153400486204}
   health: 100
+  takeDamageSFX: {fileID: 8300000, guid: 07d40c05f656a264aa44c4fe6c0dfa44, type: 3}
+  healthRegenTime: 6
+  regenSpeed: 3
 --- !u!114 &346889950537627271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1180,7 +1183,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5716832926485214747}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 6.92}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1189,7 +1192,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 10, y: 10}
+  m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8893064567645465283
 CanvasRenderer:
@@ -1219,7 +1222,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: a3a39491e884924489a01fbda55f9bfc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1508,9 +1511,9 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.833
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1670,6 +1673,7 @@ MonoBehaviour:
   curWeapon: {fileID: 7417584004689651157}
   pistolObj: {fileID: 7417584004689651157}
   shotgunObj: {fileID: 56351633610249522}
+  crosshairObj: {fileID: 5716832926485214747}
 --- !u!1 &9099636323929822280
 GameObject:
   m_ObjectHideFlags: 0
@@ -1811,6 +1815,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1644895655438664271, guid: 0ce319c94dc5f6c4f9ceb65619664415, type: 3}
+      propertyPath: gunSource
+      value: 
+      objectReference: {fileID: 2050193224941776167}
     - target: {fileID: 6509911235224700586, guid: 0ce319c94dc5f6c4f9ceb65619664415, type: 3}
       propertyPath: m_Name
       value: Shotgun

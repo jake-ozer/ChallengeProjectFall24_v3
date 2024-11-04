@@ -47,7 +47,7 @@ public class SpeedState : MonoBehaviour
             {
                 playerMvmt.updateSpeed(-speedChange);
                 this.currState--;
-                Debug.Log("Speed Down!!");
+                //Debug.Log("Speed Down!!");
             }
 
 
@@ -61,7 +61,7 @@ public class SpeedState : MonoBehaviour
                 
             if (this.currState < stateCount) //If speed state isn't stateCount (highest state)
             {
-                Debug.Log("Speed Up!!");
+                //Debug.Log("Speed Up!!");
                 playerMvmt.updateSpeed(speedChange);
                 this.currState++;
             }

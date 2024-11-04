@@ -58,6 +58,7 @@ public class PlayerWallRide : MonoBehaviour
         //holding jump button
         if(onWall && input.Ground.Wallride.ReadValue<float>() > 0) {
             wallRiding = true;
+            once2 = true;
 
             //Get player's velocty in x and z direction (left and right).
             float xDir = playerMovement.getDirectionalVelo().x;
@@ -101,15 +102,20 @@ public class PlayerWallRide : MonoBehaviour
             once = true;
             resetCameraTilt = true;
             curRot = cam.transform.eulerAngles;
-            //curRot.z = (curRot.z > 180) ? curRot.z - 360 : curRot.z;
-            //Debug.Log(curRot);
         }
 
-        //just falling off the wall, not jumping off
+        //??????????????????????
         if(input.Ground.Wallride.ReadValue<float>() <= 0)
         {
             playerMovement.enabled = true;
             resetCameraTilt = true;
+        }
+
+        //bug fix for sound
+        if(input.Ground.Wallride.ReadValue<float>() > 0 && !onWall && once2)
+        {
+            transform.parent.GetComponent<AudioSource>().Stop();
+            once2 = false;
         }
 
         //check if on wall
