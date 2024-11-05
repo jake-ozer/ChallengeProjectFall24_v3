@@ -243,7 +243,7 @@ public class PlayerMovement : MonoBehaviour
             outsideVelocity = new Vector3(newXVelocity, newYVelocity, newZVelocity);
 
 
-            //If player slows down thier outside velocity decreases as well
+            //If player slows down their outside velocity decreases as well
             Vector3 totalVelocity = outsideVelocity + movement * speed;
             if(Mathf.Abs(totalVelocity.x) < Mathf.Abs(outsideVelocity.x))
             {
@@ -274,7 +274,7 @@ public class PlayerMovement : MonoBehaviour
             outsideVelocity = new Vector3(newXVelocity, outsideVelocity.y, newZVelocity);
         }
 
-
+        //Moves the player (finally)
         controller.Move(outsideVelocity * Time.deltaTime);
 
     }
