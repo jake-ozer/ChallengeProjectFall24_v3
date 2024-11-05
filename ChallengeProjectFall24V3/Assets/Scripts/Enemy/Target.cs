@@ -31,28 +31,31 @@ public class Target : MonoBehaviour, ITakeHit, ITargetEffect
 
     private int remainingTime;
 
+    private GameObject fuse;
+
 
     // Start is called before the first frame update
     void Start()
     {
         displayTimer = false;
+        fuse = transform.GetChild(0).gameObject;
     }
 
     // Update is called once per frame
     void Update()
     {
         if (canBeHit)
-            gameObject.GetComponent<MeshRenderer>().material = activeMat;
+            fuse.GetComponent<MeshRenderer>().material = activeMat;
         else
-            gameObject.GetComponent<MeshRenderer>().material = deactiveMat;
+            fuse.GetComponent<MeshRenderer>().material = deactiveMat;
 
         if (displayTimer)
         {
-            messageText.SetText(remainingTime.ToString());
+            //messageText.SetText(remainingTime.ToString());
         }
         else
         {
-            messageText.SetText("");
+            //messageText.SetText("");
         }
     }
 
@@ -76,13 +79,14 @@ public class Target : MonoBehaviour, ITakeHit, ITargetEffect
             {
                 StartCoroutine(Cooldown());
             }
+
         }
 
     }
 
     private IEnumerator EventTimer()
     {
-        displayTimer = true;
+        //displayTimer = true;
         yield return new WaitForSeconds(1);
         remainingTime--;
         if (remainingTime > 0)
