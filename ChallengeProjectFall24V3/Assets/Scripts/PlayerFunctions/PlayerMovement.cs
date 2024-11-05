@@ -31,6 +31,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private Vector3 movement;
 
+    public AudioClip jumpSFX;
+
     //Jackson's Addition
     private Vector3 outsideVelocity;
     private bool ignoreGround;
@@ -131,14 +133,20 @@ public class PlayerMovement : MonoBehaviour
         //jumping logic
         if(isGrounded && input.Ground.Jump.triggered)
         {
-            Jump();
+            Jump(false);
         }
     }
 
     //used by wallride to give a jump boost when exiting wall ride
-    public void Jump()
+    public void Jump(bool playSFX)
     {
         velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+        if(playSFX)
+        {
+            //stop all sound effects before it (sliding), then play jump
+            GetComponent<AudioSource>().Stop();
+            GetComponent<AudioSource>().PlayOneShot(jumpSFX);
+        }
     }
 
     private void GroundCheck()
@@ -227,7 +235,7 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded && input.Ground.Jump.triggered && storedMomentum != Vector3.zero)
         {
             outsideVelocity = storedMomentum;
-            Jump();
+            Jump(false);
         }
 
         //Slow player down while on the ground unlesss they are sliding

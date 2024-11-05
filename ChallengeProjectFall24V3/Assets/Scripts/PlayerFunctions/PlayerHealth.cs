@@ -5,25 +5,55 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private HealthBar healthBar;
-    [SerializeField] private int health;
+    [SerializeField] private float health;
+    public AudioClip takeDamageSFX;
+    public float healthRegenTime;
+    private float regenTimeStart;
+    private float maxHealth;
+    private float t;
+    public float regenSpeed;
+    private bool regenStarted = false;
 
     private void Awake()
     {
-        healthBar.SetMaxHealth(health);
+        maxHealth = health;
+        healthBar.SetMaxHealth(maxHealth);
+        regenTimeStart = healthRegenTime;
     }
 
     public void TakeDamage(int damage)
     {
+        GetComponent<AudioSource>().PlayOneShot(takeDamageSFX);
+
         health -= damage;
         healthBar.SetHealth(health);
+        healthRegenTime = regenTimeStart;
     }
 
-/*    private void OnCollisionEnter(Collision collision)
+
+    private void Update()
     {
-        if (collision.gameObject.GetComponent<Enemy>() != null)
+        if (health < maxHealth)
         {
-            health -= collision.gameObject.GetComponent<Enemy>().getDamageDealt();
-            healthBar.SetHealth(health);
+            healthRegenTime -= Time.deltaTime;
+
+            if (healthRegenTime <= 0)
+            {
+                RegenHealth();
+            }
         }
-    }*/
+
+        if (health == maxHealth)
+        {
+            healthRegenTime = regenTimeStart;
+        }
+    }
+
+    private void RegenHealth()
+    {
+        health += Time.deltaTime * regenSpeed;
+        health = Mathf.Clamp(health, 0, maxHealth);
+
+        healthBar.SetHealth(health);
+    }
 }

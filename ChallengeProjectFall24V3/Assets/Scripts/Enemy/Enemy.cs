@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class Enemy : MonoBehaviour, ITakeHit
 {
@@ -11,6 +13,9 @@ public class Enemy : MonoBehaviour, ITakeHit
     [SerializeField] private AudioClip explosionSound;
     [SerializeField] private AudioClip deathSound;
     private SpeedState spdState;
+    //boolean to control mutual exclusion so that die doesnt get called multiple times
+    private bool alreadyDead = false;
+   
 
 
     private void Awake()
@@ -27,8 +32,11 @@ public class Enemy : MonoBehaviour, ITakeHit
     public void Hit(int dmg)
     {
         health -= dmg;
-        healthBar.SetHealth(health);
-    
+        if(healthBar != null)
+        {
+            healthBar.SetHealth(health);
+        }
+
         if (health <= 0)
         {
             Die();
@@ -37,18 +45,31 @@ public class Enemy : MonoBehaviour, ITakeHit
 
     private void Die()
     {
-        Instantiate(explosionEffect, transform.position, Quaternion.identity);
-        GetComponent<AudioSource>().PlayOneShot(explosionSound);
-        GetComponent<AudioSource>().PlayOneShot(deathSound);
-        spdState.UpdateSpeedState(true);
-        //disable all children, then destroy itself
-        int childCount = transform.childCount;
-        for(int i = 0; i < childCount; i++)
+        if (!alreadyDead)
         {
-            transform.GetChild(i).gameObject.SetActive(false);
-        }
-        Invoke("DestroyAfterTime", 2f);
+            alreadyDead = true;
 
+            //Debug.Log("Die method called");
+            Instantiate(explosionEffect, transform.position, Quaternion.identity);
+            GetComponent<AudioSource>().PlayOneShot(explosionSound);
+            GetComponent<AudioSource>().PlayOneShot(deathSound);
+            spdState.UpdateSpeedState(true);
+            //disable all children (and its own box collider), then destroy itself
+            GetComponent<BoxCollider>().enabled = false;
+            int childCount = transform.childCount;
+            for (int i = 0; i < childCount; i++)
+            {
+                if (transform.GetChild(i).gameObject.name != "EnemyCanvas")
+                {
+                    transform.GetChild(i).gameObject.SetActive(false);
+                } 
+                else
+                {
+                    DisableEnemyCanvasSafely(transform.GetChild(i).gameObject);
+                }
+            }
+            Invoke("DestroyAfterTime", 2f);
+        }
     }
 
     private void DestroyAfterTime()
@@ -61,15 +82,16 @@ public class Enemy : MonoBehaviour, ITakeHit
         return damageDealt;
     }
 
-    // Start is called before the first frame update
-    void Start()
+    //there is an issue with cancelling the healthbar easing coroutine, so we have to leave the healthbar controller active, and disable everything else :P
+    private void DisableEnemyCanvasSafely(GameObject canvas)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        int childCount = canvas.transform.childCount;
+        for (int i = 0; i < childCount; i++)
+        {
+            if (canvas.transform.GetChild(i).gameObject.name != "HealthBarController")
+            {
+                canvas.transform.GetChild(i).gameObject.SetActive(false);
+            }
+        }
     }
 }

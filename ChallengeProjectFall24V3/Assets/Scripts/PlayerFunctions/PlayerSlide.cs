@@ -17,6 +17,7 @@ public class PlayerSlide : MonoBehaviour
     private bool dirSlide;
     private Vector3 initCamPos;
     [SerializeField] private Vector3 movement;
+    public AudioClip slideSFX;
     
     //Jackson's Variables
     private bool tryingToSlide;
@@ -55,7 +56,7 @@ public class PlayerSlide : MonoBehaviour
 
         if (tryingToSlide && !sliding && playerMovement.onGround()) //make sure player can't slide in air or when already sliding
         {         
-            Debug.Log("You pressed slide");
+            //Debug.Log("You pressed slide");
             StartCoroutine("Slide");
             StopCoroutine("SlideInput");
             tryingToSlide = false;
@@ -68,9 +69,9 @@ public class PlayerSlide : MonoBehaviour
         {
             StopCoroutine("Slide");
             playerMovement.enabled = true;       
-            Debug.Log("Movement restored");
+            //Debug.Log("Movement restored");
             playerVision.transform.localPosition = new Vector3(playerVision.transform.localPosition.x, initCamPos.y, playerVision.transform.localPosition.z);
-            playerMovement.Jump();
+            playerMovement.Jump(true);
             sliding = false;
             dirSlide = false;
         }
@@ -91,6 +92,8 @@ public class PlayerSlide : MonoBehaviour
     }
     private IEnumerator Slide()
     {
+        GetComponent<AudioSource>().PlayOneShot(slideSFX);
+
         //Outside movement stuff
         RedirectVelocity();
 
@@ -123,7 +126,7 @@ public class PlayerSlide : MonoBehaviour
         sliding = false;
         playerVision.transform.localPosition = new Vector3(playerVision.transform.localPosition.x, initCamPos.y, playerVision.transform.localPosition.z);
 
-        playerMovement.Jump();
+        playerMovement.Jump(true);
         if(dirSlide = true)
         {
             dirSlide = false;
