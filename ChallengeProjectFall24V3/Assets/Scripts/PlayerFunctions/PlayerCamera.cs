@@ -33,8 +33,14 @@ public class PlayerCamera : MonoBehaviour
     private void Update()
     {
         Vector2 look = input.Ground.Look.ReadValue<Vector2>();
-        float lookX = look.x * Time.deltaTime * xSens;
-        float lookY = look.y * Time.deltaTime * ySens;
+
+        //float lookX = look.x * Time.deltaTime * xSens;
+        //float lookY = look.y * Time.deltaTime * ySens;
+
+        float lookX = look.x * xSens;
+        float lookY = look.y * ySens;
+
+
         //Debug.Log(Input.GetAxisRaw("Mouse X") + " " + Input.GetAxisRaw("Mouse Y"));
         //Debug.Log(look);
 
