@@ -2678,6 +2678,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 384541766859783980, guid: 5c210a935923a044aaae5e85962951d1, type: 3}
+      propertyPath: bufferCheckDistance
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 391249943844259317, guid: 5c210a935923a044aaae5e85962951d1, type: 3}
       propertyPath: m_Name
       value: Necessary Game Objects

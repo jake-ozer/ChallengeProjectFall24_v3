@@ -54,7 +54,8 @@ public class PlayerOOB : MonoBehaviour
     private IEnumerator Lakitu() //Placeholder method that returns player to last ground
     {
         Debug.Log("Lakitu");
-        transform.position = new Vector3(lastGround.transform.position.x, lastGround.transform.position.y + bufferCheckDistance, lastGround.transform.position.z);
+        gameObject.transform.position = new Vector3(lastGround.transform.position.x, lastGround.transform.position.y + bufferCheckDistance, lastGround.transform.position.z);
+        //GetComponent<CharacterController>().Move(new Vector3 (lastGround.transform.position.x, lastGround.transform.position.y + bufferCheckDistance, lastGround.transform.position.z));
         yield return new WaitForSeconds(1);
         oob = false;
     }

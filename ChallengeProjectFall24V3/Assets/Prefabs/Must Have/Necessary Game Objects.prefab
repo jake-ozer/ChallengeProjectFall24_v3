@@ -368,7 +368,7 @@ MonoBehaviour:
   movement: {x: 0, y: 0, z: 0}
   slideSFX: {fileID: 8300000, guid: e4d8bd39a8eda0c42af3ff0198fb831c, type: 3}
   canBuffer: 1
-  bufferTimer: 1
+  bufferTimer: 0.75
 --- !u!114 &4783429435373706111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -415,7 +415,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lastGround: {fileID: 0}
-  bufferCheckDistance: 0.1
+  bufferCheckDistance: 2
   oobFailsafeHeight: -100
 --- !u!82 &5037979262154795623
 AudioSource:
