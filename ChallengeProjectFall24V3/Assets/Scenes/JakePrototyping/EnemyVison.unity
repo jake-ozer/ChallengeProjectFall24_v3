@@ -1181,6 +1181,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5904478639750313890, guid: 5c210a935923a044aaae5e85962951d1, type: 3}
+      propertyPath: xSens
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5904478639750313890, guid: 5c210a935923a044aaae5e85962951d1, type: 3}
+      propertyPath: ySens
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6022645977635954663, guid: 5c210a935923a044aaae5e85962951d1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 14.62

@@ -68,6 +68,14 @@ public class Enemy : MonoBehaviour, ITakeHit
                     DisableEnemyCanvasSafely(transform.GetChild(i).gameObject);
                 }
             }
+
+            //if its a ranged enemy, disable shooting
+            RangedEnemy rangedEnemy = GetComponent<RangedEnemy>();
+            if(rangedEnemy != null){
+                rangedEnemy.enabled = false;
+            }
+
+
             Invoke("DestroyAfterTime", 2f);
         }
     }
