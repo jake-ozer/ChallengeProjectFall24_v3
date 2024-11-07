@@ -255,14 +255,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 180
       objectReference: {fileID: 0}
-    - target: {fileID: 2897822206747827874, guid: 12c3b3b99f36a6e47901f00bf6244604, type: 3}
-      propertyPath: m_Volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2897822206747827874, guid: 12c3b3b99f36a6e47901f00bf6244604, type: 3}
-      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
-      value: 0.898
-      objectReference: {fileID: 0}
     - target: {fileID: 3969392767471689663, guid: 12c3b3b99f36a6e47901f00bf6244604, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

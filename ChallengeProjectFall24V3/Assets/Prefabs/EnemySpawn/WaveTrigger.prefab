@@ -255,3 +255,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemySpawnWall: {fileID: 2992465804470827304}
   enemyPrefab: {fileID: 3305147710263978329, guid: bca8b356341e1c840b23840852591051, type: 3}
+  timeTillSpawn: 0.8
+  spawnEffect: {fileID: 7654100362053699660, guid: 56dff087061bcc9419b56dcf340692ed, type: 3}

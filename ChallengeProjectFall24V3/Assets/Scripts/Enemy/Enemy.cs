@@ -12,10 +12,13 @@ public class Enemy : MonoBehaviour, ITakeHit
     [SerializeField] private GameObject explosionEffect;
     [SerializeField] private AudioClip explosionSound;
     [SerializeField] private AudioClip deathSound;
+    [SerializeField] private Material origMaterial;
+    [SerializeField] private Material hitFlashMaterial;
+    [SerializeField] private AudioClip hitSound;
     private SpeedState spdState;
     //boolean to control mutual exclusion so that die doesnt get called multiple times
     private bool alreadyDead = false;
-   
+    private float sfxTimer = 0.2f;
 
 
     private void Awake()
@@ -23,6 +26,11 @@ public class Enemy : MonoBehaviour, ITakeHit
         healthBar.SetMaxHealth(health);
         spdState = FindObjectOfType<SpeedState>();
         
+    }
+
+    private void Update()
+    {
+        sfxTimer -= Time.deltaTime;
     }
 
     /// <summary>
@@ -36,10 +44,42 @@ public class Enemy : MonoBehaviour, ITakeHit
         {
             healthBar.SetHealth(health);
         }
+        if(health > 0 && sfxTimer < 0)
+        {
+            GetComponent<AudioSource>().PlayOneShot(hitSound);
+            sfxTimer = 0.2f;
+        }
+        
+        StopAllCoroutines();
+        StartCoroutine("HitFlash");
 
         if (health <= 0)
         {
             Die();
+        }
+    }
+
+    private IEnumerator HitFlash()
+    {
+        //get parent root
+        Transform gfxRootTrans = transform.root.Find("EnemyGFX");
+
+        for(int i = 0; i < gfxRootTrans.childCount; i++)
+        {
+            var renderer = gfxRootTrans.GetChild(i).gameObject.GetComponent<SkinnedMeshRenderer>();
+            if (renderer != null)
+            {
+                renderer.material = hitFlashMaterial;
+            }
+        }
+        yield return new WaitForSeconds(0.1f);
+        for (int i = 0; i < gfxRootTrans.childCount; i++)
+        {
+            var renderer = gfxRootTrans.GetChild(i).gameObject.GetComponent<SkinnedMeshRenderer>();
+            if (renderer != null)
+            {
+                renderer.material = origMaterial;
+            }
         }
     }
 
