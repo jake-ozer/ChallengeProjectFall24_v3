@@ -16,6 +16,8 @@ public Transform camTransform;
 private float stabTimer = 0f;
 private bool toggleKnifeAnim = true;
 
+    public Sprite crosshair { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+
     // Start is called before the first frame update
     private void Start()
     {

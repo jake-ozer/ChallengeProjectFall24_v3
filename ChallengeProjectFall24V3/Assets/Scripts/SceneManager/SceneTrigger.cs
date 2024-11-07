@@ -15,30 +15,21 @@ public class SceneTrigger : MonoBehaviour
         
         if (other.CompareTag("Player"))
         {
-            Triggered(other);
+            NextScene();
         }
     }
-
-    /// <summary>
-    /// Triggered will change the scene to the next scene based on build index, or back to scene 0 if this is the last scene
-    /// </summary>
-    /// <param name="other"></param>
-    void Triggered(Collider other)
+    public void NextScene()
     {
         int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
 
         if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
         {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
         else
         {
-        Debug.Log("This is the last scene. Return to main menu.");
-        SceneManager.LoadScene(0);
+            Debug.Log("This is the last scene. Return to main menu.");
+            SceneManager.LoadScene(0);
         }
-
-
-
-    
     }
 }
