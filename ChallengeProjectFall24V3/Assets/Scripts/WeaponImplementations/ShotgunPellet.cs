@@ -11,11 +11,12 @@ public class ShotgunPellet : MonoBehaviour
         Destroy(gameObject, lifetime);
     }
 
-    private void OnCollisionEnter(Collision hit) { 
-        if(hit.collider.gameObject.GetComponent<Enemy>() != null)
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.GetComponent<ITakeHit>() != null)
         {
-            Debug.Log("You hit " + hit.collider.gameObject.name);
-            hit.collider.gameObject.GetComponent<Enemy>().TakeDamage(damage);
+            //Debug.Log("You hit " + hit.collider.gameObject.name);
+            other.gameObject.GetComponent<ITakeHit>().Hit(damage);
             Destroy(gameObject);
         }
     }

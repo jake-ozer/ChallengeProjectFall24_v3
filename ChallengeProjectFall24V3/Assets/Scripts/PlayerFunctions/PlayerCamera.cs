@@ -33,15 +33,21 @@ public class PlayerCamera : MonoBehaviour
     private void Update()
     {
         Vector2 look = input.Ground.Look.ReadValue<Vector2>();
-        float lookX = look.x * Time.deltaTime * xSens;
-        float lookY = look.y * Time.deltaTime * ySens;
+
+        //float lookX = look.x * Time.deltaTime * xSens;
+        //float lookY = look.y * Time.deltaTime * ySens;
+
+        float lookX = look.x * xSens;
+        float lookY = look.y * ySens;
+
+
         //Debug.Log(Input.GetAxisRaw("Mouse X") + " " + Input.GetAxisRaw("Mouse Y"));
         //Debug.Log(look);
 
 
         xRot -= lookY;
         xRot = Mathf.Clamp(xRot, -90f, 90f);
-        transform.localRotation = Quaternion.Euler(xRot, yRot, 0);
+        transform.localRotation = Quaternion.Euler(xRot, yRot, transform.rotation.eulerAngles.z);
         transform.parent.Rotate(Vector3.up * lookX);
     }
 }

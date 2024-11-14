@@ -15,6 +15,7 @@ public class SpeedState : MonoBehaviour
     private float timer;
     private PlayerMovement playerMvmt;
     [SerializeField] private TextMeshProUGUI speedText;
+    private float killCount = 0;
 
 
     private void Awake()
@@ -26,12 +27,12 @@ public class SpeedState : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        speedText.text = "Speed State: " + currState.ToString() + "\nSpeed: " + playerMvmt.getSpeed() + "\nTimer: " + (cooldownTimer - Math.Round(timer, 1));
+        speedText.text = "Speed State Manager\nSpeed Level: " + currState.ToString() + "\nSpeed: " + playerMvmt.getSpeed() + "\nTimer: " + (cooldownTimer - Math.Round(timer, 1));
         timer += Time.deltaTime;
         if (timer > cooldownTimer)
         {
             timer = 0;
-            Debug.Log("Speed Down!");
+            
             UpdateSpeedState(false);
             
         }
@@ -39,22 +40,28 @@ public class SpeedState : MonoBehaviour
 
     public void UpdateSpeedState(bool raiseSpeed)
     {
-        Debug.Log("Updated Speed State");
-        Debug.Log(raiseSpeed);
+       
         if (raiseSpeed == false) //Speed down
         {
             if(this.currState != 0) //If speed state isn't 0 (lowest)
             {
                 playerMvmt.updateSpeed(-speedChange);
                 this.currState--;
+                //Debug.Log("Speed Down!!");
             }
 
 
         }else//Speed up
         {
-
+            var rankManager = FindObjectOfType<RankManager>();
+            if(rankManager != null)
+            {
+                rankManager.addKill(1);
+            }
+                
             if (this.currState < stateCount) //If speed state isn't stateCount (highest state)
             {
+                //Debug.Log("Speed Up!!");
                 playerMvmt.updateSpeed(speedChange);
                 this.currState++;
             }
