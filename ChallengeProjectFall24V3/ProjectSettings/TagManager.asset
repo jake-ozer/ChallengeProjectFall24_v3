@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Wall
   - Enemy
+  - Oob
   layers:
   - Default
   - TransparentFX
@@ -18,8 +19,8 @@ TagManager:
   - 
   - Ground
   - Wall
-  - 
-  - 
+  - Out of Bounds
+  - Player
   - 
   - 
   - 

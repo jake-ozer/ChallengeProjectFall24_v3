@@ -47,16 +47,21 @@ public class SpeedState : MonoBehaviour
             {
                 playerMvmt.updateSpeed(-speedChange);
                 this.currState--;
-                Debug.Log("Speed Down!!");
+                //Debug.Log("Speed Down!!");
             }
 
 
         }else//Speed up
         {
-            FindObjectOfType<RankManager>().addKill(1);
+            var rankManager = FindObjectOfType<RankManager>();
+            if(rankManager != null)
+            {
+                rankManager.addKill(1);
+            }
+                
             if (this.currState < stateCount) //If speed state isn't stateCount (highest state)
             {
-                Debug.Log("Speed Up!!");
+                //Debug.Log("Speed Up!!");
                 playerMvmt.updateSpeed(speedChange);
                 this.currState++;
             }

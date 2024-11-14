@@ -31,7 +31,7 @@ public class RankManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(totalEnemies);
+        //Debug.Log(totalEnemies);
         timer += Time.deltaTime;
        
         if(killCount == totalEnemies)

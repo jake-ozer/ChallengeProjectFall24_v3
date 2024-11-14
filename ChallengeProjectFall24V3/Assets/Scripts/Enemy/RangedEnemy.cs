@@ -7,24 +7,36 @@ public class RangedEnemy : MonoBehaviour
 {
     public Transform Player;
     [SerializeField] private float timer = 5;
+    [SerializeField] private float timeTillStartShooting;
     private float bulletTime;
     public GameObject enemyBullet;
     public Transform spawnPoint;
     public float enemySpeed;
-    private bool first = true;
+    public bool canShoot = false;
+    public AudioClip shootSFX;
 
 
     private void Start()
     {
         Player = GameObject.FindWithTag("Player").transform;
+        bulletTime = timeTillStartShooting;
     }
 
 
     // Update is called once per frame
     void Update()
     {
-        ShootAtPlayer();
-        transform.LookAt(Player.transform.position);
+        //observe EnemyVision, if seen once, shoot player forever after
+        if (GetComponent<EnemyVision>().canSeePlayer)
+        {
+            canShoot = true;
+        }
+
+        if (canShoot)
+        {
+            ShootAtPlayer();
+            transform.LookAt(Player.transform.position);
+        }
     }
 
     
@@ -34,18 +46,13 @@ public class RangedEnemy : MonoBehaviour
         bulletTime -= Time.deltaTime;
 
         if (bulletTime > 0) return;
-        //Doesn't shoot instantly.
-        first = false;
-        if(first == false)
-        {
-            bulletTime = timer;
+        GetComponent<AudioSource>().PlayOneShot(shootSFX);
+        bulletTime = timer;
 
-            GameObject bulletObj = Instantiate(enemyBullet, spawnPoint.transform.position, spawnPoint.transform.rotation) as GameObject;
-            Rigidbody bulletRig = bulletObj.GetComponent<Rigidbody>();
-            bulletRig.AddForce(bulletRig.transform.forward * enemySpeed);
-            Destroy(bulletObj, 5f);
-        }
-        
+        GameObject bulletObj = Instantiate(enemyBullet, spawnPoint.transform.position, spawnPoint.transform.rotation) as GameObject;
+        Rigidbody bulletRig = bulletObj.GetComponent<Rigidbody>();
+        bulletRig.AddForce(bulletRig.transform.forward * enemySpeed);
+        Destroy(bulletObj, 5f);
     }
 
 
