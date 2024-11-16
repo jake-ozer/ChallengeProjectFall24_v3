@@ -6,15 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/JakePrototyping/MainMenu.unity
+    path: Assets/Scenes/FINAL_GAME_LEVELS/MainMenu.unity
     guid: 12979610acdb5484f9f6eba62ca25a1c
   - enabled: 1
     path: Assets/Scenes/JakePrototyping/QuickTutorial.unity
     guid: cc47707ba2c1f72459a87a5e8cc5a5a8
   - enabled: 1
-    path: Assets/Scenes/JacksonPrototyping/Level1.unity
+    path: Assets/Scenes/FINAL_GAME_LEVELS/Level1.unity
     guid: 29eb46e5d2ebdc84aa21b7b2fb0d37ae
   - enabled: 1
-    path: Assets/Scenes/Ryan Prototype/Level 3 prototype.unity
+    path: Assets/Scenes/FINAL_GAME_LEVELS/Level 3 prototype.unity
     guid: 8c5d51b513e8aa2469988c6c9bf975ee
   m_configObjects: {}
