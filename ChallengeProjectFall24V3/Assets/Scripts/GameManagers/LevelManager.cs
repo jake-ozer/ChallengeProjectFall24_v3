@@ -5,36 +5,73 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-
-    private float playerBestTime = 0f;
     public static LevelManager instance { get; private set; }
-    public LevelData[] lvlDataArr = new LevelData[SceneManager.sceneCountInBuildSettings-1];
-    // Start is called before the first frame update
-    void Start()
-    {   
-        for(int i = 1; i < SceneManager.sceneCountInBuildSettings; i++) //skips tutorial level data
+    private Dictionary<string, LevelData> levelDict;
+    private HashSet<string> playableLevels = new HashSet<string>();
+
+    private void Awake()
+    {
+        //initialize dict
+        levelDict = new Dictionary<string, LevelData>();
+
+        //singleton pattern
+        if (instance != null)
         {
-            lvlDataArr[i-1] = new LevelData(0); 
+            Destroy(instance.gameObject);
         }
-        DontDestroyOnLoad(instance);
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(instance);
+        }
     }
 
-    public void setPlayerBestTime(float time)
+    /*
+     * -pass in (level name, time, rank), creates a LevelData obj, and stores that in dict
+     * -validates that time is actually faster than previous.
+     * -it is safe to call this repeatedely from RankManager, no matter what time is
+     */
+    public void AddNewBestTime(string lvlName, float time, Rank rank)
     {
-        instance.playerBestTime = time;
+        //check if level is stored on dict
+        if (levelDict.ContainsKey(lvlName))
+        {
+            //check if time is better
+            LevelData prevData = levelDict[lvlName];
+            float prevTime = prevData.GetBestTime();
+            if(time < prevTime)
+            {
+                //replace level data with new one
+                LevelData ld = new LevelData(time, rank);
+                levelDict[lvlName] = ld;
+            }
+        }
+        else //add it to the dict
+        {
+            LevelData ld = new LevelData(time, rank);
+            levelDict.Add(lvlName, ld);
+        }
     }
 
-    public void setPlayerBestRank(Rank rank)
+    //pass in level name, get best rank
+    public Rank GetBestRank(string lvlName)
     {
-        //instance.playerBestRank = rank;
+        if (levelDict.ContainsKey(lvlName))
+        {
+            return levelDict[lvlName].GetBestRank();
+        }
+        return null;
     }
 
-    public void addTime(float time, int sceneIndex, string rank)
+    //used by level select components to check if a level is playable. Should add the name of the next level upon completion of the previous
+    public void AddLevelToPlayableSet(string name)
     {
-    
-        lvlDataArr[sceneIndex].addTime(rank, time);
+        playableLevels.Add(name);
     }
 
-
-
+    //checks if a specified level is playable. used by level select components
+    public bool isPlayable(string lvlName)
+    {
+        return playableLevels.Contains(lvlName);
+    }
 }

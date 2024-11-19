@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class NewSceneTrigger : MonoBehaviour
 {
-    private RankManager rankMng = FindObjectOfType<RankManager>();
+    private RankManager rankMng;
+
+    private void Start()
+    {
+        rankMng = FindObjectOfType<RankManager>();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
