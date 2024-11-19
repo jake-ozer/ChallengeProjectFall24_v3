@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour, ITakeHit
     [SerializeField] private AudioClip hitSound;
     private SpeedState spdState;
     //boolean to control mutual exclusion so that die doesnt get called multiple times
-    private bool alreadyDead = false;
+    public bool alreadyDead = false;
     private float sfxTimer = 0.2f;
 
 
