@@ -127,7 +127,7 @@ public class PlayerSlide : MonoBehaviour
         playerVision.transform.localPosition = new Vector3(playerVision.transform.localPosition.x, initCamPos.y, playerVision.transform.localPosition.z);
 
         playerMovement.Jump(true);
-        if(dirSlide = true)
+        if(dirSlide == true)
         {
             dirSlide = false;
         }
