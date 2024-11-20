@@ -45,8 +45,10 @@ public class RankManager : MonoBehaviour
 
         if(endLevel == true && SceneManager.GetActiveScene().buildIndex != 0) //Not tutorial level
         {
+            //---------JAKE COMMENTED THE LINE BELOW OUT BECAUSE HE CHANGED LEVEL MANAGER. CHANGE METHOD CALL TO USE THE NEW AddNewBestTime METHOD------------------
+            //LevelManager.instance.addTime(timer,SceneManager.GetActiveScene().buildIndex-1, getRank(timer));
 
-            LevelManager.instance.addTime(timer,SceneManager.GetActiveScene().buildIndex-1, getRank(timer));
+
             //displayEndMenu();
             //Sprite[] rankArr = Resources.LoadAll<Sprite>("Assets/Art/UI/RankIcons/rankicons.png");
             //Rank bronze = new Rank();
