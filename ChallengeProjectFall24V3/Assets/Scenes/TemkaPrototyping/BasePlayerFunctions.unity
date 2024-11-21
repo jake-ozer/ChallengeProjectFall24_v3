@@ -152,7 +152,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   curWeapon: {fileID: 6314138415651297326}
-  weapons: []
+  pistolObj: {fileID: 0}
+  shotgunObj: {fileID: 0}
+  crosshairObj: {fileID: 0}
 --- !u!4 &216456692
 Transform:
   m_ObjectHideFlags: 0
@@ -632,8 +634,14 @@ MonoBehaviour:
   groundDistance: 0.4
   groundLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 0
   groundCheck: {fileID: 1920791361}
+  move: {x: 0, y: 0}
+  movement: {x: 0, y: 0, z: 0}
+  jumpSFX: {fileID: 0}
+  outsideVelocityDeceleration: 0
+  outsideAirDeceleration: 0
+  storedMomentumTimer: 0
 --- !u!114 &688563599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -665,6 +673,10 @@ MonoBehaviour:
   slideSpeed: 2
   cameraMoveSpeed: 0.002
   slideTime: 1
+  movement: {x: 0, y: 0, z: 0}
+  slideSFX: {fileID: 0}
+  canBuffer: 0
+  bufferTimer: 0
 --- !u!1 &887271113
 GameObject:
   m_ObjectHideFlags: 0
@@ -1541,7 +1553,17 @@ MonoBehaviour:
   controller: {fileID: 688563597}
   playerMovement: {fileID: 688563598}
   speedModifier: 10
+  wallJumpCooldown: 0
+  wallRideSpeed: 0
   wallRiding: 0
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  wallRiderSize: 0
+  tiltSpeed: 0
+  tiltAmount: 0
+  cam: {fileID: 0}
+  wallRideSFX: {fileID: 0}
 --- !u!1 &2115744122
 GameObject:
   m_ObjectHideFlags: 0
