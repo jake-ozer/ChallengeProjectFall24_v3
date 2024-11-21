@@ -8,12 +8,13 @@ public class LevelManager : MonoBehaviour
     public static LevelManager instance { get; private set; }
     private Dictionary<string, LevelData> levelDict;
     private HashSet<string> playableLevels = new HashSet<string>();
+    
 
     private void Awake()
     {
         //initialize dict
         levelDict = new Dictionary<string, LevelData>();
-
+        
         //singleton pattern
         if (instance != null)
         {
@@ -63,6 +64,15 @@ public class LevelManager : MonoBehaviour
         return null;
     }
 
+    public float GetBestTime(string lvlName)
+    {
+        if (levelDict.ContainsKey(lvlName))
+        {
+            return levelDict[lvlName].GetBestTime();
+        }
+        return 0f;
+    }
+
     //used by level select components to check if a level is playable. Should add the name of the next level upon completion of the previous
     public void AddLevelToPlayableSet(string name)
     {
@@ -73,5 +83,14 @@ public class LevelManager : MonoBehaviour
     public bool isPlayable(string lvlName)
     {
         return playableLevels.Contains(lvlName);
+    }
+
+    //bool value for if a level has data(has been played before) for it or not
+
+    public bool hasPlayed(string lvlName)
+    {
+
+        return levelDict.ContainsKey(lvlName);
+
     }
 }
