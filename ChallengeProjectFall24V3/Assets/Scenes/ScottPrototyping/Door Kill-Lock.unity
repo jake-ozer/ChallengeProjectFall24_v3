@@ -649,6 +649,7 @@ MonoBehaviour:
   origMaterial: {fileID: 0}
   hitFlashMaterial: {fileID: 0}
   hitSound: {fileID: 0}
+  alreadyDead: 0
 --- !u!1001 &403415577
 PrefabInstance:
   m_ObjectHideFlags: 0
