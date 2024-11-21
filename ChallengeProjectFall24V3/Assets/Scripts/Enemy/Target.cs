@@ -24,44 +24,34 @@ public class Target : MonoBehaviour, ITakeHit, ITargetEffect
     [SerializeField]
     private Material deactiveMat;
 
-    [SerializeField]
-    private TMP_Text messageText;
-
-    private bool displayTimer;
-
     private int remainingTime;
 
     private GameObject fuse;
+
+    [SerializeField]
+    [Tooltip("Only disable this when the attached effect object is a moving platform and you only want the target to be active when the player is standing on the platform")]
+    private bool enabledFromStanding;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        displayTimer = false;
         fuse = transform.GetChild(0).gameObject;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (canBeHit)
+        if (canBeHit && enabledFromStanding)
             fuse.GetComponent<MeshRenderer>().material = activeMat;
         else
             fuse.GetComponent<MeshRenderer>().material = deactiveMat;
 
-        if (displayTimer)
-        {
-            //messageText.SetText(remainingTime.ToString());
-        }
-        else
-        {
-            //messageText.SetText("");
-        }
     }
 
     public void Hit(int dmg)
     {
-        if (canBeHit)
+        if (canBeHit && enabledFromStanding)
         {
             Debug.Log("Shot Target!");
             for (int i = 0; i < effectObjects.Length; i++)
@@ -95,11 +85,9 @@ public class Target : MonoBehaviour, ITakeHit, ITargetEffect
         }
         else if(targetCooldown > 0)
         {
-            displayTimer = false;
             StartCoroutine(Cooldown());
         }
-        else
-            displayTimer = false;
+
         
     }
     private IEnumerator Cooldown()
@@ -128,5 +116,10 @@ public class Target : MonoBehaviour, ITakeHit, ITargetEffect
     {
         yield return new WaitForSeconds(effectStartDelay);
         gameObject.GetComponent<Target>().changeState(true);
+    }
+
+    public void updateStanding(bool standing)
+    {
+        enabledFromStanding = standing;
     }
 }

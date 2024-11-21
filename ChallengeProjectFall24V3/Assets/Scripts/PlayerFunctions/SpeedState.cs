@@ -45,8 +45,9 @@ public class SpeedState : MonoBehaviour
         {
             if(this.currState != 0) //If speed state isn't 0 (lowest)
             {
-                playerMvmt.updateSpeed(-speedChange);
-                this.currState--;
+                playerMvmt.updateSpeed(-1);
+                //this.currState--;
+                this.currState = 0;
                 //Debug.Log("Speed Down!!");
             }
 
@@ -61,6 +62,11 @@ public class SpeedState : MonoBehaviour
                 
             if (this.currState < stateCount) //If speed state isn't stateCount (highest state)
             {
+                if(currState % 3 == 0)
+                {
+                    float newFov = Camera.main.fieldOfView + 5;
+                    Camera.main.fieldOfView = newFov;
+                }
                 //Debug.Log("Speed Up!!");
                 playerMvmt.updateSpeed(speedChange);
                 this.currState++;
@@ -69,6 +75,11 @@ public class SpeedState : MonoBehaviour
 
         }
         timer = 0;
+
+    }
+
+    private void updateFOV(float change)
+    {
 
     }
 

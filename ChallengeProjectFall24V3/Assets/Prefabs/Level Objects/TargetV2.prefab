@@ -328,6 +328,7 @@ MonoBehaviour:
   activeMat: {fileID: 2100000, guid: 63e3008a73db5df4b89e7d1e198017fb, type: 2}
   deactiveMat: {fileID: 2100000, guid: e5e5e6aa54b96b049ab550cb25128e90, type: 2}
   messageText: {fileID: 0}
+  enabledFromStanding: 1
 --- !u!1 &6770913000733055931
 GameObject:
   m_ObjectHideFlags: 0

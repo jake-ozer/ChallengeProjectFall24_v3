@@ -2073,6 +2073,7 @@ MonoBehaviour:
   origMaterial: {fileID: 0}
   hitFlashMaterial: {fileID: 0}
   hitSound: {fileID: 0}
+  alreadyDead: 0
 --- !u!1001 &389576023
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3301,6 +3302,14 @@ PrefabInstance:
     - target: {fileID: 3334410201997004, guid: 5c210a935923a044aaae5e85962951d1, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 346889950537627271, guid: 5c210a935923a044aaae5e85962951d1, type: 3}
+      propertyPath: stateCount
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 346889950537627271, guid: 5c210a935923a044aaae5e85962951d1, type: 3}
+      propertyPath: speedChange
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 391249943844259317, guid: 5c210a935923a044aaae5e85962951d1, type: 3}
       propertyPath: m_Name

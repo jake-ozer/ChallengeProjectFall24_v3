@@ -44,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float storedMomentumTimer;
     private float timer;
     bool jumping;
+    private float startingSpeed;
 
     private void Awake()
     {
@@ -55,6 +56,7 @@ public class PlayerMovement : MonoBehaviour
         outsideVelocity = new Vector3(0, 0, 0);
         ignoreGround = false;
         jumping = false;
+        startingSpeed = speed;
 
         input.Ground.Jump.performed += JumpPerformed;
         input.Ground.Jump.canceled += JumpCanceled;
@@ -100,7 +102,14 @@ public class PlayerMovement : MonoBehaviour
 
     public void updateSpeed(float speed)
     {
-        this.speed += speed;
+        if(speed == -1)
+        {
+            this.speed = startingSpeed;
+        }
+        else
+        {
+            this.speed += speed;
+        }
     }
 
     public float getSpeed()

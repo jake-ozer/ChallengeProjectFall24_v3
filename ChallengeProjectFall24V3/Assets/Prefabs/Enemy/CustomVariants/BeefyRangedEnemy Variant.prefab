@@ -114,7 +114,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8371402688386702876, guid: 2ae6d2d42fc302b4e9d77741c890693a, type: 3}
       propertyPath: health
-      value: 100
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 9125045859693056982, guid: 2ae6d2d42fc302b4e9d77741c890693a, type: 3}
       propertyPath: bulletDamage

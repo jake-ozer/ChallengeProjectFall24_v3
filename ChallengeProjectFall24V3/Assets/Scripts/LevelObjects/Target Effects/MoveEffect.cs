@@ -16,6 +16,13 @@ public class MoveEffect : MonoBehaviour, ITargetEffect
     [SerializeField]
     private float resetSpeed;
 
+    [SerializeField]
+    [Tooltip("Only lets target enabled when player is standing on the platform")]
+    private bool enableTarget;
+
+    [SerializeField]
+    private GameObject target;
+
     Vector3 moveDestination;
     bool moving;
     bool returning;
@@ -84,6 +91,7 @@ public class MoveEffect : MonoBehaviour, ITargetEffect
             }
         }
 
+
     }
 
     //Called by Target object when shot
@@ -113,6 +121,11 @@ public class MoveEffect : MonoBehaviour, ITargetEffect
             player = other.gameObject;
             movePlayer = true;
         }
+
+        if (enableTarget)
+        {
+            target.GetComponent<Target>().updateStanding(true);
+        }
     }
 
     //Once player leaves platform stops moving them
@@ -121,6 +134,11 @@ public class MoveEffect : MonoBehaviour, ITargetEffect
         if (other.tag.Equals("Player"))
         {
             movePlayer = false;
+        }
+
+        if (enableTarget)
+        {
+            target.GetComponent<Target>().updateStanding(false);
         }
     }
 }
