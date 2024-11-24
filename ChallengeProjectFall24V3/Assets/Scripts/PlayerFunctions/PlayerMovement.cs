@@ -42,9 +42,16 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float outsideVelocityDeceleration;
     [SerializeField] private float outsideAirDeceleration;
     [SerializeField] private float storedMomentumTimer;
+    [SerializeField] private float fovChangeSpeed;
+    [SerializeField] private Camera myCam;
     private float timer;
     bool jumping;
     private float startingSpeed;
+
+    private float targetFOV;
+
+    private SpeedLineManager speedLines;
+
 
     private void Awake()
     {
@@ -57,6 +64,8 @@ public class PlayerMovement : MonoBehaviour
         ignoreGround = false;
         jumping = false;
         startingSpeed = speed;
+        targetFOV = 60;
+        speedLines = transform.GetChild(0).GetChild(3).GetComponent<SpeedLineManager>();
 
         input.Ground.Jump.performed += JumpPerformed;
         input.Ground.Jump.canceled += JumpCanceled;
@@ -92,11 +101,22 @@ public class PlayerMovement : MonoBehaviour
         VerticalMovement();
         GroundCheck();
         OutsideMovement();
+
+        //Speed lines
+        if (!(outsideVelocity.x != 0 || outsideVelocity.z != 0))
+        {
+            speedLines.setTrigger(0, false);
+        }
+
     }
 
     private void LateUpdate()
     {
         LateOutsideMovement();
+
+        //Changes player FOV
+        myCam.fieldOfView = Mathf.Lerp(myCam.fieldOfView, targetFOV, fovChangeSpeed);
+
     }
 
 
@@ -294,5 +314,23 @@ public class PlayerMovement : MonoBehaviour
         //Moves the player (finally)
         controller.Move(outsideVelocity * Time.deltaTime);
 
+        if (outsideVelocity.x != 0 || outsideVelocity.z != 0)
+        {
+            if (!isMoved)
+                speedLines.setTrigger(0, true);
+        }
+
+    }
+
+    public void updateTargetFOV(float targetFOV)
+    {
+        if(targetFOV > 0)
+        {
+            this.targetFOV += targetFOV;
+        }
+        else
+        {
+            this.targetFOV = 60;
+        }
     }
 }

@@ -21,6 +21,7 @@ public class PlayerSlide : MonoBehaviour
     
     //Jackson's Variables
     private bool tryingToSlide;
+    private SpeedLineManager speedLines;
     [SerializeField] private bool canBuffer;
     [SerializeField] private float bufferTimer;
 
@@ -30,6 +31,7 @@ public class PlayerSlide : MonoBehaviour
     {
         input = new MainInput();
         initCamPos = playerVision.transform.localPosition;
+        speedLines = transform.GetChild(0).GetChild(3).GetComponent<SpeedLineManager>();
     }
 
     // --------- enable/disbale input when script toggled on/off -------------- 
@@ -89,7 +91,20 @@ public class PlayerSlide : MonoBehaviour
             }
 
         }
+        else
+        {
+            speedLines.setTrigger(1, false);
+        }
     }
+
+    private void LateUpdate()
+    {
+        if(sliding)
+        {
+            speedLines.setTrigger(1, true);
+        }
+    }
+
     private IEnumerator Slide()
     {
         GetComponent<AudioSource>().PlayOneShot(slideSFX);

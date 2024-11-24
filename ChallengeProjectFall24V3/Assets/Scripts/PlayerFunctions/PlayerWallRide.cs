@@ -32,11 +32,15 @@ public class PlayerWallRide : MonoBehaviour
     public AudioClip wallRideSFX;
     private bool once2 = true;
 
+    private SpeedLineManager speedLines;
+
     void Awake()
     {
         input = new MainInput();
         cooldownStart = wallJumpCooldown;
         camStartRot = cam.transform.rotation.eulerAngles;
+
+        speedLines = transform.parent.GetChild(0).GetChild(3).GetComponent<SpeedLineManager>();
     }
 
     // --------- enable/disbale input when script toggled on/off -------------- 
@@ -94,7 +98,7 @@ public class PlayerWallRide : MonoBehaviour
         }
 
         //release jump button
-        if(onWall && input.Ground.Wallride.ReadValue<float>() <= 0 && wallRiding)
+        if(((onWall && input.Ground.Wallride.ReadValue<float>() <= 0) || !onWall) && wallRiding)
         {
             playerMovement.Jump(true);
             wallJumpCooldown = cooldownStart;
@@ -125,6 +129,20 @@ public class PlayerWallRide : MonoBehaviour
         if(resetCameraTilt)
         {
             ResetCameraTilt(curRot);
+        }
+
+        //speed lines
+        if(!wallRiding || !onWall)
+        {
+            speedLines.setTrigger(2, false);
+        }
+    }
+
+    private void LateUpdate()
+    {
+        if (wallRiding)
+        {
+            speedLines.setTrigger(2, true);
         }
     }
 

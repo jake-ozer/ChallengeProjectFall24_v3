@@ -17,10 +17,16 @@ public class SpeedState : MonoBehaviour
     [SerializeField] private TextMeshProUGUI speedText;
     private float killCount = 0;
 
+    [SerializeField]
+    private Camera myCam;
+
+    private ComboBarManager comboBar;
+
 
     private void Awake()
     {
         playerMvmt = FindObjectOfType<PlayerMovement>();
+        comboBar = transform.parent.GetChild(1).GetChild(6).GetComponent<ComboBarManager>();
     }
 
 
@@ -34,8 +40,9 @@ public class SpeedState : MonoBehaviour
             timer = 0;
             
             UpdateSpeedState(false);
-            
         }
+
+        comboBar.SetSlider(cooldownTimer, timer);
     }
 
     public void UpdateSpeedState(bool raiseSpeed)
@@ -43,17 +50,20 @@ public class SpeedState : MonoBehaviour
        
         if (raiseSpeed == false) //Speed down
         {
+            comboBar.ComboReset();
             if(this.currState != 0) //If speed state isn't 0 (lowest)
             {
                 playerMvmt.updateSpeed(-1);
                 //this.currState--;
                 this.currState = 0;
                 //Debug.Log("Speed Down!!");
+                playerMvmt.updateTargetFOV(-1);
             }
 
 
         }else//Speed up
         {
+            comboBar.ComboIncrease();
             var rankManager = FindObjectOfType<RankManager>();
             if(rankManager != null)
             {
@@ -62,24 +72,18 @@ public class SpeedState : MonoBehaviour
                 
             if (this.currState < stateCount) //If speed state isn't stateCount (highest state)
             {
-                if(currState % 3 == 0)
-                {
-                    float newFov = Camera.main.fieldOfView + 5;
-                    Camera.main.fieldOfView = newFov;
-                }
                 //Debug.Log("Speed Up!!");
                 playerMvmt.updateSpeed(speedChange);
                 this.currState++;
+                if (currState % 3 == 0)
+                {
+                    playerMvmt.updateTargetFOV(5);
+                }
             }
 
 
         }
         timer = 0;
-
-    }
-
-    private void updateFOV(float change)
-    {
 
     }
 
