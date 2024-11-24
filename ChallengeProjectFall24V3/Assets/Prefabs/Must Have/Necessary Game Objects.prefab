@@ -2051,7 +2051,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Quit
+  m_text: 'Quit to Menu
 
 '
   m_isRightToLeft: 0
@@ -3181,6 +3181,7 @@ GameObject:
   - component: {fileID: 9213042335616377434}
   - component: {fileID: 6068885209580968483}
   - component: {fileID: 4478124638074635597}
+  - component: {fileID: 6865680463230526267}
   m_Layer: 5
   m_Name: QuitButton
   m_TagString: Untagged
@@ -3290,9 +3291,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4478124638074635597}
-        m_TargetAssemblyTypeName: QuitGame, Assembly-CSharp
-        m_MethodName: Quit
+      - m_Target: {fileID: 6865680463230526267}
+        m_TargetAssemblyTypeName: LoadLevelByName, Assembly-CSharp
+        m_MethodName: LoadLevel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8893339176372316383}
+        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
+        m_MethodName: TogglePause
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3314,6 +3327,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 154a5fc499763744ea6543230784ea4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6865680463230526267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6524923915222578265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4256629e9dce724a87c5c10b41e9634, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelName: MainMenu
 --- !u!1 &6758575446415420083
 GameObject:
   m_ObjectHideFlags: 0

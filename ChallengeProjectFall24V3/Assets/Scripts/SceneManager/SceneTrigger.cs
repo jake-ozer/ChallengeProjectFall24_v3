@@ -24,12 +24,14 @@ public class SceneTrigger : MonoBehaviour
 
         if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            FindObjectOfType<LevelManager>().ChangeScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
         else
         {
-            Debug.Log("This is the last scene. Return to main menu.");
-            SceneManager.LoadScene(0);
+            //Debug.Log("This is the last scene. Return to main menu.");
+            //SceneManager.LoadScene(0);
+            FindObjectOfType<LevelManager>().ChangeScene(0);
         }
     }
 }

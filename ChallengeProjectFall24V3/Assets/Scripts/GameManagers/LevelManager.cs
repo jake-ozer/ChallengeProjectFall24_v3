@@ -8,6 +8,7 @@ public class LevelManager : MonoBehaviour
     public static LevelManager instance { get; private set; }
     private Dictionary<string, LevelData> levelDict;
     private HashSet<string> playableLevels = new HashSet<string>();
+    private SceneTransition sceneTransition;
 
     private void Awake()
     {
@@ -24,6 +25,8 @@ public class LevelManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(instance);
         }
+
+        sceneTransition = transform.Find("SceneTransition").GetComponent<SceneTransition>();
     }
 
     /*
@@ -73,5 +76,16 @@ public class LevelManager : MonoBehaviour
     public bool isPlayable(string lvlName)
     {
         return playableLevels.Contains(lvlName);
+    }
+
+    //routes change scene to scene transition
+    public void ChangeScene(string levelName)
+    {
+        sceneTransition.ChangeScene(levelName);
+    }
+
+    public void ChangeScene(int levelIndex)
+    {
+        sceneTransition.ChangeScene(levelIndex);
     }
 }
