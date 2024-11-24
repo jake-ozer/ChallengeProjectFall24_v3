@@ -87,12 +87,12 @@ public class RankCanvasUIControl : MonoBehaviour
         //Extra guidelines to make sure that current attempt has atleast 1 previous attempt before.
         //rM.prevTime and rM.prevRank are initalized to 999f and null, respectively in RankManager script. 
         
-        if (newHighScore && rankManager.prevTime != 999f && rankManager.prevRank != null) 
+        if (newHighScore && rankManager.prevTime != 0f && rankManager.prevRank != null) 
         {
             prevTime.text = convertFloatToMinutes(rankManager.prevTime);
             prevRank.sprite = rankManager.prevRank.icon;
             newBestAttemptMenu.SetActive(true);
-        } else if(newHighScore && rankManager.prevTime == 999f && rankManager.prevRank == null)
+        } else if(newHighScore && rankManager.prevTime == 0f && rankManager.prevRank == null)
         {
             //If these inputs haven't changed, then that means this is user's first time so it should display 0 seconds/no prev rank.
             prevTime.text = "0s";

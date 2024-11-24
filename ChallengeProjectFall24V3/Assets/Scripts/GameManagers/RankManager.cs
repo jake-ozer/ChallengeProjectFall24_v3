@@ -29,8 +29,11 @@ public class RankManager : MonoBehaviour
     public Rank prevRank = null;
 
 
+
     void Start()
     {
+        prevTime = (float)Math.Round(LevelManager.instance.GetBestTime(levelName), 1);
+        prevRank = LevelManager.instance.GetBestRank(levelName);
         Enemy[] preplacedEnemyList = FindObjectsOfType<Enemy>();
         if(FindObjectOfType<EnemySpawner>() != null)
         {
@@ -67,8 +70,7 @@ public class RankManager : MonoBehaviour
             //Temka changed method call
             if(LevelManager.instance.hasPlayed(levelName) == true) //If player has played the level before
             {
-                prevTime = (float)Math.Round(LevelManager.instance.GetBestTime(levelName), 1); 
-                prevRank = LevelManager.instance.GetBestRank(levelName);
+                
                 LevelManager.instance.AddNewBestTime(levelName, (float)Math.Round(timer, 1), getRank(timer));
                 if (prevTime > timer) //If current time is faster than previous
                 {
