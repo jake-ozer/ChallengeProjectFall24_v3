@@ -59,7 +59,8 @@ public class EnemySpawner : MonoBehaviour
         //spawn the actual enemy
         for (int i = 0; i < spawners; i++)
         {
-            Instantiate(enemyPrefab, transform.GetChild(i));
+            var enemy = Instantiate(enemyPrefab, transform.GetChild(i));
+            enemy.transform.SetParent(null);
         }
     }
 }
