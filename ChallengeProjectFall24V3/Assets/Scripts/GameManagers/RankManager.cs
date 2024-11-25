@@ -2,97 +2,125 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.ConstrainedExecution;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class RankManager : MonoBehaviour
 {
-    [SerializeField] private float bronzeTimeSeconds;
-    [SerializeField] private float silverTimeSeconds;
-    [SerializeField] private float goldTimeSeconds;
-    [SerializeField] private float platTimeSeconds;
+    [SerializeField] public float bronzeTimeSeconds = 0;
+    [SerializeField] public float silverTimeSeconds;
+    [SerializeField] public float goldTimeSeconds;
+    [SerializeField] public float platTimeSeconds;
+    public Rank bronze;
+    public Rank silver;
+    public Rank gold;
+    public Rank plat;
     private int startEnemies = 0;
     private bool platMedalCheck = false;
     private int totalEnemies;
-    private float timer = 0;
+    public float timer = 0;
     private float killCount = 0;
     private bool endLevel = false;
+    public string levelName;
+    private RankCanvasUIControl canvasControl;
+    public float prevTime = 999f;
+    public Rank prevRank = null;
+
 
 
     void Start()
     {
+        prevTime = (float)Math.Round(LevelManager.instance.GetBestTime(levelName), 1);
+        prevRank = LevelManager.instance.GetBestRank(levelName);
         Enemy[] preplacedEnemyList = FindObjectsOfType<Enemy>();
         if(FindObjectOfType<EnemySpawner>() != null)
         {
             startEnemies += FindObjectOfType<EnemySpawner>().GetEnemySpawnWall().transform.childCount;//Gets all spawn point enemies (enemies that haven't spawned yet)
         } 
         this.SetTotalEnemies(preplacedEnemyList.Length + startEnemies); //adds preplaced and enemies yet to be spawned
-    }
+        this.bronze.setTime(bronzeTimeSeconds);
+        this.silver.setTime(silverTimeSeconds);
+        this.gold.setTime(goldTimeSeconds);
+        this.plat.setTime(platTimeSeconds);
+        canvasControl = FindObjectOfType<RankCanvasUIControl>();
+        
+
+     }
 
 
     // Update is called once per frame
-    void Update()
+    void Update() //SHOULD I USE COROUTINE FOR CANVAS STUFFFFFFFF
     {
         //Debug.Log(totalEnemies);
+        if (endLevel == false) { 
         timer += Time.deltaTime;
+        }
        
         if(killCount == totalEnemies && platMedalCheck == false)
         {
-            Debug.Log("plat medal kill count reached");
-            platMedalCheck = true;
-           
+            platMedalCheck = true;  
         }
 
         if(endLevel == true && SceneManager.GetActiveScene().buildIndex != 0) //Not tutorial level
         {
             //---------JAKE COMMENTED THE LINE BELOW OUT BECAUSE HE CHANGED LEVEL MANAGER. CHANGE METHOD CALL TO USE THE NEW AddNewBestTime METHOD------------------
-            //LevelManager.instance.addTime(timer,SceneManager.GetActiveScene().buildIndex-1, getRank(timer));
-
-
-            //displayEndMenu();
-            //Sprite[] rankArr = Resources.LoadAll<Sprite>("Assets/Art/UI/RankIcons/rankicons.png");
-            //Rank bronze = new Rank();
-            //bronze.icon = rankArr[0];
             
-
+            //Temka changed method call
+            if(LevelManager.instance.hasPlayed(levelName) == true) //If player has played the level before
+            {
+                
+                LevelManager.instance.AddNewBestTime(levelName, (float)Math.Round(timer, 1), getRank(timer));
+                if (prevTime > timer) //If current time is faster than previous
+                {
+                    canvasControl.EnableEndMenu(true);
+                    
+                } else //If current time is slower than previous
+                {
+                    canvasControl.EnableEndMenu(false);
+                    
+                }
+            } else //If player hasnt played level before
+            {
+                canvasControl.EnableEndMenu(true);
+                LevelManager.instance.AddNewBestTime(levelName, (float)Math.Round(timer, 1), getRank(timer));
+                
+            }
         }
-        
-
-
     }
 
-    private void displayEndMenu()
-    {
-
-
-
-    }
-
-    private string getRank(float time)
+    public Rank getRank(float time)
     {
 
         if (time < platTimeSeconds && platMedalCheck == true) //30, 45, 55
         {
-            return "plat"; //28
+            return this.plat;
+
         }
         else if (time < platTimeSeconds && platMedalCheck != true)
         {
-            return "gold"; //28 not enough kills
+            
+            return this.gold;
+            //return "gold"; //28 not enough kills
         }
         else if (time < goldTimeSeconds)
         {
-            return "gold"; //33 
+            return this.gold;
+            //return "gold"; //33 
         }
         else if (time < silverTimeSeconds)
         {
-            return "silver"; //50
+            return this.silver;
+            //return "silver"; //50
         }
         else 
         {
-            return "bronze";
+            return this.bronze;
+            //return "bronze";
         }
 
-
+        
 
     }
 

@@ -14,7 +14,7 @@ public class LevelManager : MonoBehaviour
     {
         //initialize dict
         levelDict = new Dictionary<string, LevelData>();
-
+        
         //singleton pattern
         if (instance != null)
         {
@@ -66,6 +66,15 @@ public class LevelManager : MonoBehaviour
         return null;
     }
 
+    public float GetBestTime(string lvlName)
+    {
+        if (levelDict.ContainsKey(lvlName))
+        {
+            return levelDict[lvlName].GetBestTime();
+        }
+        return 0f;
+    }
+
     //used by level select components to check if a level is playable. Should add the name of the next level upon completion of the previous
     public void AddLevelToPlayableSet(string name)
     {
@@ -87,5 +96,12 @@ public class LevelManager : MonoBehaviour
     public void ChangeScene(int levelIndex)
     {
         sceneTransition.ChangeScene(levelIndex);
+    //bool value for if a level has data(has been played before) for it or not
+
+    public bool hasPlayed(string lvlName)
+    {
+
+        return levelDict.ContainsKey(lvlName);
+
     }
 }
