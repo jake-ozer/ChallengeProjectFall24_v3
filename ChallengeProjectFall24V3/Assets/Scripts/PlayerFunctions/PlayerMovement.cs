@@ -103,7 +103,11 @@ public class PlayerMovement : MonoBehaviour
         OutsideMovement();
 
         //Speed lines
-        if (!(outsideVelocity.x != 0 || outsideVelocity.z != 0))
+        if (outsideVelocity.x + outsideVelocity.z > 50)
+        {
+            speedLines.setTrigger(0, true);
+        }
+        else
         {
             speedLines.setTrigger(0, false);
         }
@@ -313,12 +317,6 @@ public class PlayerMovement : MonoBehaviour
 
         //Moves the player (finally)
         controller.Move(outsideVelocity * Time.deltaTime);
-
-        if (outsideVelocity.x != 0 || outsideVelocity.z != 0)
-        {
-            if (!isMoved)
-                speedLines.setTrigger(0, true);
-        }
 
     }
 
