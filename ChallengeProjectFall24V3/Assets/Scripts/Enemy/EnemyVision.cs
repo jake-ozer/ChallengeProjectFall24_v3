@@ -16,7 +16,9 @@ public class EnemyVision : MonoBehaviour
 
     private void Awake()
     {
-        player = FindObjectOfType<PlayerMovement>().gameObject;
+        var playerMove = FindObjectOfType<PlayerMovement>();
+        if (playerMove != null)
+            player = playerMove.gameObject;
     }
 
     private void Update()

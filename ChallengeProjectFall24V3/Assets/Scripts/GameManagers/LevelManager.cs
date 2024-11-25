@@ -18,12 +18,12 @@ public class LevelManager : MonoBehaviour
         //singleton pattern
         if (instance != null)
         {
-            Destroy(instance.gameObject);
+            Destroy(gameObject);
         }
         else
         {
             instance = this;
-            DontDestroyOnLoad(instance);
+            DontDestroyOnLoad(this.gameObject);
         }
 
         sceneTransition = transform.Find("SceneTransition").GetComponent<SceneTransition>();
