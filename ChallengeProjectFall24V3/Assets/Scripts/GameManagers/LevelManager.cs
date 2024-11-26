@@ -96,9 +96,10 @@ public class LevelManager : MonoBehaviour
     public void ChangeScene(int levelIndex)
     {
         sceneTransition.ChangeScene(levelIndex);
-    //bool value for if a level has data(has been played before) for it or not
+    }
 
-    public bool hasPlayed(string lvlName)
+    //bool value for if a level has data(has been played before) for it or not
+    public bool HasPlayed(string lvlName)
     {
 
         return levelDict.ContainsKey(lvlName);

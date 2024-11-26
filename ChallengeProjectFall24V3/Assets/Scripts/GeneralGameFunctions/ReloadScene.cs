@@ -7,7 +7,7 @@ public class ReloadScene : MonoBehaviour
 {
     public void ReloadLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        FindObjectOfType<LevelManager>().ChangeScene(SceneManager.GetActiveScene().buildIndex);
         Time.timeScale = 1f;
     }
 }

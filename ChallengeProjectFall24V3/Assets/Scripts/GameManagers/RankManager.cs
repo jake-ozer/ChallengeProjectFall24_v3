@@ -68,7 +68,7 @@ public class RankManager : MonoBehaviour
             //---------JAKE COMMENTED THE LINE BELOW OUT BECAUSE HE CHANGED LEVEL MANAGER. CHANGE METHOD CALL TO USE THE NEW AddNewBestTime METHOD------------------
             
             //Temka changed method call
-            if(LevelManager.instance.hasPlayed(levelName) == true) //If player has played the level before
+            if(LevelManager.instance.HasPlayed(levelName) == true) //If player has played the level before
             {
                 
                 LevelManager.instance.AddNewBestTime(levelName, (float)Math.Round(timer, 1), getRank(timer));

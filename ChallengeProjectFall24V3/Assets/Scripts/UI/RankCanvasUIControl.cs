@@ -41,7 +41,7 @@ public class RankCanvasUIControl : MonoBehaviour
     {
         rankManager = FindObjectOfType<RankManager>();
         levelName.text = rankManager.levelName;
-        bool hasPlayed = LevelManager.instance.hasPlayed(rankManager.levelName);
+        bool hasPlayed = LevelManager.instance.HasPlayed(rankManager.levelName);
         bronzeBenchmarkTime.text = convertFloatToMinutes(rankManager.bronzeTimeSeconds);
         silverBenchmarkTime.text = convertFloatToMinutes(rankManager.silverTimeSeconds);
         goldBenchmarkTime.text = convertFloatToMinutes(rankManager.goldTimeSeconds);
@@ -51,6 +51,10 @@ public class RankCanvasUIControl : MonoBehaviour
 
         if(hasPlayed)
         {
+            if (!rankDisplay.gameObject.activeSelf)
+            {
+                rankDisplay.gameObject.SetActive(true);
+            }
             rankDisplay.sprite = LevelManager.instance.GetBestRank(rankManager.levelName).icon;
             bestTime.text = convertFloatToMinutes(LevelManager.instance.GetBestTime(rankManager.levelName));
             
