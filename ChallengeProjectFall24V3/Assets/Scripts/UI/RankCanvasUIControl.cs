@@ -112,7 +112,7 @@ public class RankCanvasUIControl : MonoBehaviour
 
 
         endMenu.SetActive(true);
-
+        GetComponent<Animator>().SetTrigger("ShowEndMenu");
     }
 
     public string convertFloatToMinutes(float val)
@@ -134,9 +134,9 @@ public class RankCanvasUIControl : MonoBehaviour
             Invoke("MakeStartMenuInactive", 5f);
         }
     }
-
     private void MakeStartMenuInactive()
     {
         startMenu.SetActive(false);
+        GameObject.Find("Parentforstarttext").SetActive(false);
     }
 }
