@@ -38,6 +38,7 @@ public class SceneTransition : MonoBehaviour
         yield return new WaitUntil(() => anim.gameObject.GetComponent<Image>().color.a == 1);
         //fade out
         SceneManager.LoadScene(levelIndex);
+        Time.timeScale = 1f;
         anim.SetTrigger("FadeIn");
         canTrans = true;
     }
@@ -51,6 +52,7 @@ public class SceneTransition : MonoBehaviour
         yield return new WaitUntil(() => anim.gameObject.GetComponent<Image>().color.a == 1);
         SceneManager.LoadScene(levelName);
         //fade out
+        Time.timeScale = 1f;
         anim.SetTrigger("FadeIn");
         canTrans = true;
     }

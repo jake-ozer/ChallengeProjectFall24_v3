@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -15,15 +16,17 @@ public class LevelSelectComponent : MonoBehaviour
     public Color inactiveTextColor;
     public GameObject lockIcon;
     public bool isLevel1;
+    public TextMeshProUGUI timeText;
 
-    private void Start()
+    private void OnEnable()
     {
         levelManager = FindObjectOfType<LevelManager>();
         var bestRank = levelManager.GetBestRank(levelName);
-        if(bestRank != null)
+        if (bestRank != null)
         {
             levelRankIcon.gameObject.SetActive(true);
             levelRankIcon.sprite = bestRank.icon;
+            timeText.text = convertFloatToMinutes(levelManager.GetBestTime(levelName)).ToString();
         }
 
         //check with level manager to see if levels are playable
@@ -44,5 +47,11 @@ public class LevelSelectComponent : MonoBehaviour
             lockIcon.SetActive(true);
             buttonTxt.gameObject.transform.parent.gameObject.GetComponent<Button>().interactable = false;
         }
+    }
+
+    public string convertFloatToMinutes(float val)
+    {
+        TimeSpan time = TimeSpan.FromSeconds(val);
+        return time.ToString("mm':'ss");
     }
 }

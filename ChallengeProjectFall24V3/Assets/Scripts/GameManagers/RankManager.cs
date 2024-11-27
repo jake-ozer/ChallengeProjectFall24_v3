@@ -55,7 +55,7 @@ public class RankManager : MonoBehaviour
     {
         //Debug.Log(totalEnemies);
         if (endLevel == false) { 
-        timer += Time.deltaTime;
+        timer = FindObjectOfType<Timer>().GetTime();
         }
        
         if(killCount == totalEnemies && platMedalCheck == false)
