@@ -3524,6 +3524,30 @@ PrefabInstance:
       propertyPath: colors.Array.data[11].a
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8002656774566293055, guid: 5c210a935923a044aaae5e85962951d1, type: 3}
+      propertyPath: levelName
+      value: Level 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8002656774566293055, guid: 5c210a935923a044aaae5e85962951d1, type: 3}
+      propertyPath: nextLevelName
+      value: Level 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8002656774566293055, guid: 5c210a935923a044aaae5e85962951d1, type: 3}
+      propertyPath: goldTimeSeconds
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 8002656774566293055, guid: 5c210a935923a044aaae5e85962951d1, type: 3}
+      propertyPath: platTimeSeconds
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 8002656774566293055, guid: 5c210a935923a044aaae5e85962951d1, type: 3}
+      propertyPath: bronzeTimeSeconds
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 8002656774566293055, guid: 5c210a935923a044aaae5e85962951d1, type: 3}
+      propertyPath: silverTimeSeconds
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 8583644481049581324, guid: 5c210a935923a044aaae5e85962951d1, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

@@ -58,7 +58,7 @@ public class RankCanvasUIControl : MonoBehaviour
         rankManager = FindObjectOfType<RankManager>();
         levelName.text = rankManager.levelName;
         bool hasPlayed = LevelManager.instance.HasPlayed(rankManager.levelName);
-        bronzeBenchmarkTime.text = convertFloatToMinutes(rankManager.bronzeTimeSeconds);
+        //bronzeBenchmarkTime.text = convertFloatToMinutes(rankManager.bronzeTimeSeconds);  you just need to finish level in all cases
         silverBenchmarkTime.text = convertFloatToMinutes(rankManager.silverTimeSeconds);
         goldBenchmarkTime.text = convertFloatToMinutes(rankManager.goldTimeSeconds);
         platBenchmarkTime.text = convertFloatToMinutes(rankManager.platTimeSeconds);

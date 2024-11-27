@@ -27,6 +27,7 @@ public class RankManager : MonoBehaviour
     private RankCanvasUIControl canvasControl;
     public float prevTime = 999f;
     public Rank prevRank = null;
+    public string nextLevelName;
 
 
 
@@ -128,7 +129,8 @@ public class RankManager : MonoBehaviour
 
     public void setEndLevel(bool update) {
     
-            this.endLevel = update;
+        this.endLevel = update;
+        LevelManager.instance.AddLevelToPlayableSet(nextLevelName);
     }
 
     private void SetTotalEnemies(int num)
