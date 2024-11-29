@@ -4737,6 +4737,10 @@ PrefabInstance:
       value: TILE 2 (12)
       objectReference: {fileID: 0}
     - target: {fileID: 7808080026191146240, guid: d022feec772464e4a8e34ff3909b987e, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7808080026191146240, guid: d022feec772464e4a8e34ff3909b987e, type: 3}
       propertyPath: m_TagString
       value: Wall
       objectReference: {fileID: 0}
@@ -5203,6 +5207,10 @@ PrefabInstance:
     - target: {fileID: 7808080026191146240, guid: d022feec772464e4a8e34ff3909b987e, type: 3}
       propertyPath: m_Name
       value: TILE 2 (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7808080026191146240, guid: d022feec772464e4a8e34ff3909b987e, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7808080026191146240, guid: d022feec772464e4a8e34ff3909b987e, type: 3}
       propertyPath: m_TagString
@@ -8436,6 +8444,10 @@ PrefabInstance:
     - target: {fileID: 7808080026191146240, guid: d022feec772464e4a8e34ff3909b987e, type: 3}
       propertyPath: m_Name
       value: TILE 2 (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7808080026191146240, guid: d022feec772464e4a8e34ff3909b987e, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7808080026191146240, guid: d022feec772464e4a8e34ff3909b987e, type: 3}
       propertyPath: m_TagString
