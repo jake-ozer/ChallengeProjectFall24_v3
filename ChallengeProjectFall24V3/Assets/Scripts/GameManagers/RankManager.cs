@@ -93,6 +93,9 @@ public class RankManager : MonoBehaviour
 
     public Rank getRank(float time)
     {
+        //getting rid of (need all kill to get plat)
+        platMedalCheck = true;
+
 
         if (time < platTimeSeconds && platMedalCheck == true) //30, 45, 55
         {

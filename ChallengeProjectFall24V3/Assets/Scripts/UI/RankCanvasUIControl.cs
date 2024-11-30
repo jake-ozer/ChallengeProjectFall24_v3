@@ -35,6 +35,9 @@ public class RankCanvasUIControl : MonoBehaviour
     public Image prevRank;
 
     private MainInput input;
+
+    public AudioClip endMenuSound;
+
     private void Awake()
     {
         input = new MainInput();
@@ -79,10 +82,15 @@ public class RankCanvasUIControl : MonoBehaviour
         startMenu.SetActive(true);
     }
 
-
+    bool once3 = true;
     public void EnableEndMenu(bool newHighScore)
     {
-
+        if(once3)
+        {
+            GetComponent<AudioSource>().PlayOneShot(endMenuSound);
+            once3 = false;
+        }
+        
         timeAchieved.text = convertFloatToMinutes(rankManager.timer);
         rankAchieved.sprite = rankManager.getRank(rankManager.timer).icon;
         rankAchieved.gameObject.SetActive(true);
