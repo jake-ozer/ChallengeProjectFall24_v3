@@ -115,7 +115,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1939237610507899019}
   - component: {fileID: 2469866703887629023}
-  - component: {fileID: 1814621037312109497}
+  - component: {fileID: 6507241374520729137}
   m_Layer: 0
   m_Name: KillLockDoor
   m_TagString: Untagged
@@ -160,7 +160,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1814621037312109497
+--- !u!114 &6507241374520729137
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

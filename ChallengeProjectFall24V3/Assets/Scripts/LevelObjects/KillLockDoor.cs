@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class Kill_Lock_Door : MonoBehaviour
+public class KillLockDoor : MonoBehaviour
 {
     public List<Enemy> killList;
     private Animator anim;
