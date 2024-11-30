@@ -967,7 +967,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedChange: 1
-  stateCount: 100
+  stateCount: 12
   cooldownTimer: 8
   speedText: {fileID: 2641839309988356146}
   myCam: {fileID: 1740659850288038054}

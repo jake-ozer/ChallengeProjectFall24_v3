@@ -122,6 +122,7 @@ public class RankCanvasUIControl : MonoBehaviour
         
     }
 
+    bool once = true;
     private void Update()
     {
         //if player moves at all, get rid of startmenu anim
@@ -131,7 +132,12 @@ public class RankCanvasUIControl : MonoBehaviour
         {
             GetComponent<Animator>().SetTrigger("StartMenuFade");
             FindObjectOfType<Timer>().StartTimer();
-            Invoke("MakeStartMenuInactive", 5f);
+            if (once)
+            {
+                Invoke("MakeStartMenuInactive", 5f);
+                once = false;
+            }
+           
         }
     }
     private void MakeStartMenuInactive()
