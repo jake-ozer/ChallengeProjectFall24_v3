@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FINAL_GAME_LEVELS/Level3(deprecated).unity
     guid: 8c5d51b513e8aa2469988c6c9bf975ee
+  - enabled: 1
+    path: Assets/Scenes/FINAL_GAME_LEVELS/Credits.unity
+    guid: 499a93b6d34d0e149a01185ee7d9e586
   m_configObjects: {}

@@ -5158,6 +5158,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 92.64
       objectReference: {fileID: 0}
+    - target: {fileID: 8002656774566293055, guid: 5c210a935923a044aaae5e85962951d1, type: 3}
+      propertyPath: levelName
+      value: Level 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8002656774566293055, guid: 5c210a935923a044aaae5e85962951d1, type: 3}
+      propertyPath: nextLevelName
+      value: Credits
+      objectReference: {fileID: 0}
     - target: {fileID: 8704141947360837517, guid: 5c210a935923a044aaae5e85962951d1, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
