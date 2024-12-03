@@ -7223,6 +7223,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bca8b356341e1c840b23840852591051, type: 3}
+--- !u!114 &741224989 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 764998730730559616, guid: bca8b356341e1c840b23840852591051, type: 3}
+  m_PrefabInstance: {fileID: 741224988}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c52092cef0b03e44cad1a146bb43cd9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &744156425 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5403619153279032778, guid: fa658f11ef2e0f049adc5c0e2394f29b, type: 3}
@@ -16168,7 +16179,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6507241374520729137, guid: ff310832fdbf41b4f85da719a4c96827, type: 3}
       propertyPath: killList.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6507241374520729137, guid: ff310832fdbf41b4f85da719a4c96827, type: 3}
       propertyPath: killList.Array.data[0]
@@ -16178,6 +16189,10 @@ PrefabInstance:
       propertyPath: killList.Array.data[1]
       value: 
       objectReference: {fileID: 1576872276}
+    - target: {fileID: 6507241374520729137, guid: ff310832fdbf41b4f85da719a4c96827, type: 3}
+      propertyPath: killList.Array.data[2]
+      value: 
+      objectReference: {fileID: 741224989}
     - target: {fileID: 8593724881562457323, guid: ff310832fdbf41b4f85da719a4c96827, type: 3}
       propertyPath: m_Name
       value: KillLockDoor
