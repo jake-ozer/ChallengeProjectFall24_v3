@@ -124,10 +124,15 @@ public class RankCanvasUIControl : MonoBehaviour
     }
 
     public string convertFloatToMinutes(float val)
-    {   
-            TimeSpan time = TimeSpan.FromSeconds(val);
-            return time.ToString("mm':'ss"); 
-        
+    {
+        //TimeSpan time = TimeSpan.FromSeconds(val);
+        //return time.ToString("mm':'ss"); 
+        int minutes = Mathf.FloorToInt(val / 60f);
+        int seconds = Mathf.FloorToInt(val % 60f);
+        int milliseconds = Mathf.FloorToInt((val * 1000) % 1000 / 10);
+
+        //format string as mm:ss.mmm
+        return string.Format("{0:00}:{1:00}.{2:00}", minutes, seconds, milliseconds);
     }
 
     bool once = true;

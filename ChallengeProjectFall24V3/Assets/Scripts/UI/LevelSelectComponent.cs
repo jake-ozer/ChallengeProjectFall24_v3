@@ -26,7 +26,8 @@ public class LevelSelectComponent : MonoBehaviour
         {
             levelRankIcon.gameObject.SetActive(true);
             levelRankIcon.sprite = bestRank.icon;
-            timeText.text = convertFloatToMinutes(levelManager.GetBestTime(levelName)).ToString();
+            timeText.text = Timer.FormattedTime(levelManager.GetBestTime(levelName));
+            //timeText.text = convertFloatToMinutes(levelManager.GetBestTime(levelName)).ToString();
         }
 
         //check with level manager to see if levels are playable

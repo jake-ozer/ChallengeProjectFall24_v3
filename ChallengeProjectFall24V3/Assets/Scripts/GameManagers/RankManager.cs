@@ -55,11 +55,13 @@ public class RankManager : MonoBehaviour
     void Update() //SHOULD I USE COROUTINE FOR CANVAS STUFFFFFFFF
     {
         //Debug.Log(totalEnemies);
-        if (endLevel == false) { 
-        timer = FindObjectOfType<Timer>().GetTime();
-        }
        
-        if(killCount == totalEnemies && platMedalCheck == false)
+        if (endLevel == false)
+        {
+            timer = FindObjectOfType<Timer>().GetTime();
+        }
+
+        if (killCount == totalEnemies && platMedalCheck == false)
         {
             platMedalCheck = true;  
         }
@@ -72,7 +74,7 @@ public class RankManager : MonoBehaviour
             if(LevelManager.instance.HasPlayed(levelName) == true) //If player has played the level before
             {
                 
-                LevelManager.instance.AddNewBestTime(levelName, (float)Math.Round(timer, 1), getRank(timer));
+                LevelManager.instance.AddNewBestTime(levelName, timer, getRank(timer));
                 if (prevTime > timer) //If current time is faster than previous
                 {
                     canvasControl.EnableEndMenu(true);
@@ -85,7 +87,7 @@ public class RankManager : MonoBehaviour
             } else //If player hasnt played level before
             {
                 canvasControl.EnableEndMenu(true);
-                LevelManager.instance.AddNewBestTime(levelName, (float)Math.Round(timer, 1), getRank(timer));
+                LevelManager.instance.AddNewBestTime(levelName, timer, getRank(timer));
                 
             }
         }
