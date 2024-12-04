@@ -84,7 +84,7 @@ public class Enemy : MonoBehaviour, ITakeHit
         }
     }
 
-    private void Die()
+    public void Die()
     {
         if (!alreadyDead)
         {

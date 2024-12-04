@@ -897,9 +897,10 @@ MonoBehaviour:
   move: {x: 0, y: 0}
   movement: {x: 0, y: 0, z: 0}
   jumpSFX: {fileID: 8300000, guid: c3c248f0511f1ef4ca77ea651010c2a0, type: 3}
+  outsideVelocity: {x: 0, y: 0, z: 0}
   outsideVelocityDeceleration: 100
   outsideAirDeceleration: 50
-  storedMomentumTimer: 0.75
+  storedMomentumTimer: 0.2
   fovChangeSpeed: 0.25
   myCam: {fileID: 1740659850288038054}
 --- !u!114 &1423836127255544602
