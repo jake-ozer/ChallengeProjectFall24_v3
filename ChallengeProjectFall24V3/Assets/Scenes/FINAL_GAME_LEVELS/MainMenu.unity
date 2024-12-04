@@ -4160,7 +4160,7 @@ GameObject:
   - component: {fileID: 1708542727}
   - component: {fileID: 1708542726}
   m_Layer: 5
-  m_Name: BetaVersion
+  m_Name: Version
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4182,7 +4182,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 25, y: 228}
+  m_AnchoredPosition: {x: -21, y: 228}
   m_SizeDelta: {x: 268.5823, y: 75.1443}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1708542726
@@ -4205,7 +4205,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Beta 1.1
+  m_text: 'Version 1.0
 
 '
   m_isRightToLeft: 0

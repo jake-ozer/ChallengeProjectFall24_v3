@@ -27769,6 +27769,22 @@ PrefabInstance:
       propertyPath: nextLevelName
       value: Level1
       objectReference: {fileID: 0}
+    - target: {fileID: 8002656774566293055, guid: 5c210a935923a044aaae5e85962951d1, type: 3}
+      propertyPath: goldTimeSeconds
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8002656774566293055, guid: 5c210a935923a044aaae5e85962951d1, type: 3}
+      propertyPath: platTimeSeconds
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8002656774566293055, guid: 5c210a935923a044aaae5e85962951d1, type: 3}
+      propertyPath: bronzeTimeSeconds
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8002656774566293055, guid: 5c210a935923a044aaae5e85962951d1, type: 3}
+      propertyPath: silverTimeSeconds
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8704141947360837517, guid: 5c210a935923a044aaae5e85962951d1, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -43693,7 +43709,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: USE LEFT CLICK TO SHOOT
+  m_text: 'USE LEFT CLICK
+
+    [OR ''RT''] TO SHOOT'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 98db0bf0520534542aec0a30cb41ea0a, type: 2}
   m_sharedMaterial: {fileID: 3370495853448244622, guid: 98db0bf0520534542aec0a30cb41ea0a, type: 2}
@@ -43720,8 +43738,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 1.6
-  m_fontSizeBase: 1.6
+  m_fontSize: 1.29
+  m_fontSizeBase: 1.29
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -47890,7 +47908,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1082396164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57820,7 +57838,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: USE LEFT TAB TO SWITCH WEAPONS
+  m_text: 'USE LEFT TAB
+
+    [OR ''Y''] TO SWITCH WEAPONS'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 98db0bf0520534542aec0a30cb41ea0a, type: 2}
   m_sharedMaterial: {fileID: 3370495853448244622, guid: 98db0bf0520534542aec0a30cb41ea0a, type: 2}

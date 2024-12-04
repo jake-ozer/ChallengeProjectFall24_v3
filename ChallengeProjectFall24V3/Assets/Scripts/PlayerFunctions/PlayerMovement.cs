@@ -51,6 +51,7 @@ public class PlayerMovement : MonoBehaviour
     private float targetFOV;
 
     private SpeedLineManager speedLines;
+    public AudioSource jumpSoundSource;
 
 
     private void Awake()
@@ -179,7 +180,7 @@ public class PlayerMovement : MonoBehaviour
         {
             //stop all sound effects before it (sliding), then play jump
             GetComponent<AudioSource>().Stop();
-            GetComponent<AudioSource>().PlayOneShot(jumpSFX);
+            jumpSoundSource.PlayOneShot(jumpSFX);
         }
     }
 
