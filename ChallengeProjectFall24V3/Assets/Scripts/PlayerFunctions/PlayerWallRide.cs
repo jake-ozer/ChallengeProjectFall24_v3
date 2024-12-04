@@ -157,48 +157,91 @@ public class PlayerWallRide : MonoBehaviour
         if (!isTilting)
         {
             isTilting = true;
-            elapsedTime = 0f; 
+            elapsedTime = 0f;
         }
 
-        //check whether the wall is on our right or left
+        // Check whether the wall is on our right or left
         bool onLeft = false;
         RaycastHit hit;
-        //check left
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.left), out hit, 1f, wallLayer))
         {
             onLeft = true;
-            //Debug.Log("wall on left for tilt");
         }
         else if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), out hit, 1f, wallLayer))
         {
             onLeft = false;
-            //Debug.Log("wall on right for tilt");
-        }
-        float tiltChange = onLeft ? -tiltAmount : tiltAmount;
-
-        if(elapsedTime < 1f)
-        {
-            elapsedTime = Mathf.Clamp01(elapsedTime + Time.deltaTime * tiltSpeed);
-            Vector3 newRot = new Vector3(cam.transform.rotation.eulerAngles.x, cam.transform.rotation.eulerAngles.y, camStartRot.z + tiltChange);
-            //Debug.Log(newRot);
-            cam.transform.rotation = Quaternion.Lerp(Quaternion.Euler(camStartRot), Quaternion.Euler(newRot), elapsedTime);
         }
 
-        
+        float targetTilt = onLeft ? -tiltAmount : tiltAmount;
+
+        // Set tilt on the PlayerCamera
+        cam.GetComponent<PlayerCamera>().SetTilt(targetTilt, tiltSpeed);
     }
 
     private void ResetCameraTilt(Vector3 tiltedRot)
     {
-        if (isTilting)
+        // Reset tilt to 0 smoothly
+        cam.GetComponent<PlayerCamera>().SetTilt(0f, tiltSpeed);
+        /*if (isTilting)
         {
-            
-            elapsedTime = Mathf.Clamp01(elapsedTime - Time.deltaTime * tiltSpeed);
-            cam.transform.rotation = Quaternion.Lerp(Quaternion.Euler(camStartRot), Quaternion.Euler(tiltedRot), elapsedTime);
+           
 
+            // Check if the tilt reset is complete
+            elapsedTime = Mathf.Clamp01(elapsedTime - Time.deltaTime * tiltSpeed);
             if (elapsedTime <= 0f)
             {
                 isTilting = false;
             }
-        }
+        }*/
     }
+
+    /* private void TiltCamera()
+     {
+         if (!isTilting)
+         {
+             isTilting = true;
+             elapsedTime = 0f; 
+         }
+
+         //check whether the wall is on our right or left
+         bool onLeft = false;
+         RaycastHit hit;
+         //check left
+         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.left), out hit, 1f, wallLayer))
+         {
+             onLeft = true;
+             //Debug.Log("wall on left for tilt");
+         }
+         else if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), out hit, 1f, wallLayer))
+         {
+             onLeft = false;
+             //Debug.Log("wall on right for tilt");
+         }
+         float tiltChange = onLeft ? -tiltAmount : tiltAmount;
+
+         if(elapsedTime < 1f)
+         {
+             elapsedTime = Mathf.Clamp01(elapsedTime + Time.deltaTime * tiltSpeed);
+             Vector3 newRot = new Vector3(cam.transform.rotation.eulerAngles.x, cam.transform.rotation.eulerAngles.y, camStartRot.z + tiltChange);
+             //Debug.Log(newRot);
+             cam.transform.rotation = Quaternion.Lerp(Quaternion.Euler(camStartRot), Quaternion.Euler(newRot), elapsedTime);
+         }
+
+
+     }
+
+     private void ResetCameraTilt(Vector3 tiltedRot)
+     {
+         if (isTilting)
+         {
+
+             elapsedTime = Mathf.Clamp01(elapsedTime - Time.deltaTime * tiltSpeed);
+             cam.transform.rotation = Quaternion.Lerp(Quaternion.Euler(camStartRot), Quaternion.Euler(tiltedRot), elapsedTime);
+
+             if (elapsedTime <= 0f)
+             {
+                 isTilting = false;
+             }
+         }
+     }*/
 }

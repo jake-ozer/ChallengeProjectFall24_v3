@@ -144,7 +144,16 @@ public class PlayerMovement : MonoBehaviour
 
     private void DirectionalMovement()
     {
-        move = input.Ground.Move.ReadValue<Vector2>();
+        //bandaid solution for web build + controller support
+        if (Gamepad.current != null)
+        {
+            move = Gamepad.current.leftStick.ReadValue();
+        }
+        else
+        {
+            move = input.Ground.Move.ReadValue<Vector2>();
+        }
+        
         float xDir = move.x;
         float zDir = move.y;
 

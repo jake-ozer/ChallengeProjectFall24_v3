@@ -36,7 +36,8 @@ public class LevelManager : MonoBehaviour
         sceneTransition = transform.Find("SceneTransition").GetComponent<SceneTransition>();
 
         //load level data from game files on game startup
-        LoadLevelData();
+        //not in web build
+        //LoadLevelData();
     }
 
     /*
@@ -66,7 +67,8 @@ public class LevelManager : MonoBehaviour
         }
 
         //save data to game files
-        SaveLevelData();
+        //dont save in web build
+        //SaveLevelData();
     }
 
     //pass in level name, get best rank

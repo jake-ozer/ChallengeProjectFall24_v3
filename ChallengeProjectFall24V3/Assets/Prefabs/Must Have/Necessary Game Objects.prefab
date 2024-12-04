@@ -1742,7 +1742,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   wallRiderSize: 2
-  tiltSpeed: 4
+  tiltSpeed: 10
   tiltAmount: 8
   cam: {fileID: 1740659850288038054}
   wallRideSFX: {fileID: 8300000, guid: 91f61f3c6dcdca3488d0bc99394e34ed, type: 3}

@@ -35,7 +35,10 @@ public class Pistol : MonoBehaviour, IWeapon
 
     private void OnEnable()
     {
-        gunSource.PlayOneShot(gunEquipSFX);
+        if(gunEquipSFX != null && gunSource != null)
+        {
+            gunSource.PlayOneShot(gunEquipSFX);
+        }
     }
 
     public void Shoot()

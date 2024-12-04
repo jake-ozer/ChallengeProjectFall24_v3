@@ -2113,8 +2113,6 @@ GameObject:
   m_Component:
   - component: {fileID: 374591667}
   - component: {fileID: 374591666}
-  - component: {fileID: 374591668}
-  - component: {fileID: 374591669}
   m_Layer: 6
   m_Name: therocck
   m_TagString: Untagged
@@ -2189,50 +2187,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -86.41, z: 0}
---- !u!65 &374591668
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 374591665}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 4.715074, y: 6.438948, z: 0.2}
-  m_Center: {x: 0.58522534, y: -0.31552625, z: 0}
---- !u!114 &374591669
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 374591665}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c52092cef0b03e44cad1a146bb43cd9c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 100
-  healthBar: {fileID: 0}
-  damageDealt: 0
-  explosionEffect: {fileID: 0}
-  explosionSound: {fileID: 0}
-  deathSound: {fileID: 0}
-  origMaterial: {fileID: 0}
-  hitFlashMaterial: {fileID: 0}
-  hitSound: {fileID: 0}
-  alreadyDead: 0
-  enemyGFX_Root: {fileID: 0}
 --- !u!1 &384340211 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6635251813211237418, guid: 8a64c09612062f64a8a6ef828dfd669e, type: 3}
