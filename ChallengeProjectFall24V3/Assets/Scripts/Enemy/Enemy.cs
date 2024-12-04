@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour, ITakeHit
     //boolean to control mutual exclusion so that die doesnt get called multiple times
     public bool alreadyDead = false;
     private float sfxTimer = 0.2f;
+    public GameObject enemyGFX_Root;
 
 
     private void Awake()
@@ -62,7 +63,7 @@ public class Enemy : MonoBehaviour, ITakeHit
     private IEnumerator HitFlash()
     {
         //get parent root
-        Transform gfxRootTrans = transform.root.Find("EnemyGFX");
+        Transform gfxRootTrans = enemyGFX_Root.transform;
 
         for(int i = 0; i < gfxRootTrans.childCount; i++)
         {
@@ -83,7 +84,7 @@ public class Enemy : MonoBehaviour, ITakeHit
         }
     }
 
-    private void Die()
+    public void Die()
     {
         if (!alreadyDead)
         {

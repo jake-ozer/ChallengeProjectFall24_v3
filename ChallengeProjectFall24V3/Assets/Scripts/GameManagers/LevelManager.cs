@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,6 +10,12 @@ public class LevelManager : MonoBehaviour
     private Dictionary<string, LevelData> levelDict;
     private HashSet<string> playableLevels = new HashSet<string>();
     private SceneTransition sceneTransition;
+
+    //translating save data
+    public Rank bronze;
+    public Rank silver;
+    public Rank gold;
+    public Rank plat;
 
     private void Awake()
     {
@@ -27,6 +34,9 @@ public class LevelManager : MonoBehaviour
         }
 
         sceneTransition = transform.Find("SceneTransition").GetComponent<SceneTransition>();
+
+        //load level data from game files on game startup
+        LoadLevelData();
     }
 
     /*
@@ -54,6 +64,9 @@ public class LevelManager : MonoBehaviour
             LevelData ld = new LevelData(time, rank);
             levelDict.Add(lvlName, ld);
         }
+
+        //save data to game files
+        SaveLevelData();
     }
 
     //pass in level name, get best rank
@@ -104,5 +117,56 @@ public class LevelManager : MonoBehaviour
 
         return levelDict.ContainsKey(lvlName);
 
+    }
+
+    private void SaveLevelData()
+    {
+        //add all the times to a storage dict (we cant store icons)
+        Dictionary<string, float> timeDict = new Dictionary<string, float>();
+        Dictionary<string, string> rankNameDict = new Dictionary<string, string>();
+        foreach (KeyValuePair<string, LevelData> kvp in levelDict)
+        {
+            timeDict.Add(kvp.Key, kvp.Value.GetBestTime());
+            //Debug.Log("saving name: "+kvp.Value.GetBestRank().name);
+            rankNameDict.Add(kvp.Key, kvp.Value.GetBestRank().name);
+        }
+        //save data to the file in save system
+        LevelSaveData lsd = new LevelSaveData(timeDict, rankNameDict, this.playableLevels);
+        SaveSystem.SaveLevelData(lsd);
+    }
+
+    private void LoadLevelData()
+    {
+        //pull data from save system
+        LevelSaveData grabbedData = SaveSystem.LoadLevelData();
+        this.playableLevels = grabbedData.savedPlayableLevels;
+        //assign appropriate level data objects to all of the saved times we have
+        Dictionary<string, float> grabbedTimeDict = grabbedData.savedLevelTimesDict;
+        Dictionary<string, string> grabbedNameDict = grabbedData.savedLevelRankNamesDict;
+        Dictionary<string, LevelData> tempDict = new Dictionary<string, LevelData>();
+        foreach (KeyValuePair<string, float> kvp in grabbedTimeDict)
+        {
+            LevelData ld = new LevelData(kvp.Value, GetRankFromName(grabbedNameDict[kvp.Key]));
+            tempDict.Add(kvp.Key, ld);
+        }
+        this.levelDict = tempDict;
+    }
+
+    //used for saving data
+    private Rank GetRankFromName(string name)
+    {
+       switch(name)
+       {
+            case "Platinum":
+                return this.plat;
+            case "Gold":
+                return this.gold;
+            case "Silver":
+                return this.silver;
+            case "Bronze":
+                return this.bronze;
+            default:
+                return this.bronze;
+       }
     }
 }

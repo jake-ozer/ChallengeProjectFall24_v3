@@ -2531,7 +2531,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c52092cef0b03e44cad1a146bb43cd9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 50
+  health: 40
   healthBar: {fileID: 4178510396594036636}
   damageDealt: 10
   explosionEffect: {fileID: 7412293463838433641, guid: 4202f22eb1d0a7146a6011f9742d5441, type: 3}
@@ -2540,6 +2540,8 @@ MonoBehaviour:
   origMaterial: {fileID: -3972660475953491392, guid: a8d11185e6a496048b2439c6f12aa212, type: 3}
   hitFlashMaterial: {fileID: 2100000, guid: 9047928e37a1bfb4394ffbe39cf7b7fb, type: 2}
   hitSound: {fileID: 8300000, guid: 6bc428aee94fdd34f82cd74beb77d6bb, type: 3}
+  alreadyDead: 0
+  enemyGFX_Root: {fileID: 3406402154555632310}
 --- !u!54 &-7604138654785829337
 Rigidbody:
   m_ObjectHideFlags: 0

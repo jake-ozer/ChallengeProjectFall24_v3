@@ -53,7 +53,7 @@ public class Target : MonoBehaviour, ITakeHit, ITargetEffect
     {
         if (canBeHit && enabledFromStanding)
         {
-            Debug.Log("Shot Target!");
+            //Debug.Log("Shot Target!");
             for (int i = 0; i < effectObjects.Length; i++)
             {
                 effectObjects[i].GetComponent<ITargetEffect>().Effect(eventTimer);

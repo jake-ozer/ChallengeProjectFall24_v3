@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -28,6 +29,12 @@ public class PlayerHealth : MonoBehaviour
         health -= damage;
         healthBar.SetHealth(health);
         healthRegenTime = regenTimeStart;
+
+        //player death
+        if(health <= 0)
+        {
+            FindObjectOfType<LevelManager>().ChangeScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 
 

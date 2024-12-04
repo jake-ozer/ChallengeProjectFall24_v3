@@ -48,7 +48,7 @@ public class MoveEffect : MonoBehaviour, ITargetEffect
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         //Moves platform towards destination
         if (moving && !returning)

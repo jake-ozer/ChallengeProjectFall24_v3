@@ -34,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip jumpSFX;
 
     //Jackson's Addition
-    private Vector3 outsideVelocity;
+    [SerializeField] private Vector3 outsideVelocity;
     private bool ignoreGround;
     private Vector3 storedMomentum;
     private bool isMoved;
@@ -51,6 +51,7 @@ public class PlayerMovement : MonoBehaviour
     private float targetFOV;
 
     private SpeedLineManager speedLines;
+    public AudioSource jumpSoundSource;
 
 
     private void Awake()
@@ -164,10 +165,11 @@ public class PlayerMovement : MonoBehaviour
         controller.Move(velocity * Time.deltaTime);
 
         //jumping logic
-        if(isGrounded && input.Ground.Jump.triggered)
+        if(isGrounded && input.Ground.Jump.triggered && outsideVelocity.y == 0)
         {
             Jump(false);
         }
+
     }
 
     //used by wallride to give a jump boost when exiting wall ride
@@ -178,7 +180,7 @@ public class PlayerMovement : MonoBehaviour
         {
             //stop all sound effects before it (sliding), then play jump
             GetComponent<AudioSource>().Stop();
-            GetComponent<AudioSource>().PlayOneShot(jumpSFX);
+            jumpSoundSource.PlayOneShot(jumpSFX);
         }
     }
 

@@ -39,6 +39,6 @@ public class UIGradient : BaseMeshEffect
     {
         m_color1 = color1;
         m_color2 = color2;
-        Debug.Log("Color Changed");
+       // Debug.Log("Color Changed");
     }
 }

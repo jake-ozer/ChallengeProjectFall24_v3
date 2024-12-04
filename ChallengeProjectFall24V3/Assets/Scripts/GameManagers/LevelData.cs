@@ -4,7 +4,7 @@ using System.IO;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class LevelData : MonoBehaviour
+public class LevelData
 {
     private Rank rank; 
     private float bestTime;
